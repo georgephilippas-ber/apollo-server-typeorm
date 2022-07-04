@@ -15,6 +15,7 @@ let databaseProvider_ = new DatabaseProvider([Product, NutritionalValue, Carbohy
     await databaseProvider_.initialize();
 
     let product_ = new Product();
+    product_ = {nutritional_value: {energy: 10, protein: 20, fat: {remaining_fat: 2, }}}
     product_.nutritional_value = new NutritionalValue();
     product_.nutritional_value.carbohydrates = new Carbohydrates()
     product_.nutritional_value.fat = new Fat();
