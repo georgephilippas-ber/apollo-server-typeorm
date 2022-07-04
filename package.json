@@ -1,0 +1,26 @@
+{
+  "name": "apollo-graphql-typeorm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/georgephilippas-ber/apollo-graphql-typeorm.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/georgephilippas-ber/apollo-graphql-typeorm/issues"
+  },
+  "homepage": "https://github.com/georgephilippas-ber/apollo-graphql-typeorm#readme",
+  "dependencies": {
+    "apollo-server": "^3.9.0",
+    "graphql": "^16.5.0",
+    "sqlite3": "^5.0.8",
+    "typeorm": "^0.3.7"
+  }
+}
