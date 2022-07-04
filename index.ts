@@ -25,4 +25,3 @@ let databaseProvider_ = new DatabaseProvider([Product, NutritionalValue, Carbohy
 
     databaseProvider_.getDataSource().manager.create(Product)
 })();
-
