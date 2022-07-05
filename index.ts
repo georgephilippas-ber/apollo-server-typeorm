@@ -18,7 +18,6 @@ import {ProductResolver} from "./server/graphql/resolvers/product/product-resolv
 let main = async () =>
 {
     let databaseProvider_ = new DatabaseProvider([Product, ProductCategory, ProductPhoto, NutritionalValue, Carbohydrates, Fat, Vitamins, Minerals,]);
-
     await databaseProvider_.initialize();
 
     let productManager: ProductManager = new ProductManager(databaseProvider_);
