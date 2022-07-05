@@ -27,3 +27,4 @@ let databaseProvider_ = new DatabaseProvider([Product, ProductCategory, ProductP
 
     await databaseProvider_.destroy();
 })();
+
