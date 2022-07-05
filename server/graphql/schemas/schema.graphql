@@ -5,31 +5,86 @@ type Query
 
 type ProductPhoto
 {
-    id: ID
+    id: ID!
+
     identifier: String
     uri: String
 }
 
 type ProductCategory
 {
-    id: ID,
+    id: ID!
+
     category_name: String
 }
 
 type NutritionalValue
 {
-    id: ID
+    id: ID!
     energy: Float
     protein: Float
+
+    carbohydrates: Carbohydrates
+    fat: Fat
+    vitamins: Vitamins
+    minerals: Minerals
 }
 
 type Product
 {
-    id: ID
+    id: ID!
+
     name: String
     warning: String
     product_type: String
     photos: [ProductPhoto]
     categories: [ProductCategory]
     nutritional_value: NutritionalValue
+}
+
+type Carbohydrates
+{
+    id: ID!
+
+    carbohydrates_total: Float
+    sugar: Float
+    fibre: Float
+}
+
+type Fat
+{
+    id: ID!
+
+    fat_total: Float
+    unsaturated: Float
+    saturated: Float
+    trans: Float
+}
+
+type Vitamins
+{
+    id: ID
+
+    retinol: Float
+
+    thiamin: Float
+    riboflavin: Float
+    niacin: Float
+    pantothenicAcid: Float
+    pyridoxine: Float
+    biotin: Float
+    folicAcid: Float
+    cobalamin: Float
+    ascorbicAcid: Float
+
+    calciferol: Float
+}
+
+type Minerals
+{
+    id: ID
+
+    calcium: Float
+    iron: Float
+    potassium: Float
 }

@@ -14,7 +14,6 @@ export class ProductResolver extends Resolver
         this.productManager = productManager;
     }
 
-
     getQueryResolver(): any
     {
         return {
