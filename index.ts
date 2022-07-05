@@ -6,9 +6,9 @@ import {
     NutritionalValue,
     Product, ProductCategory,
     Vitamins
-} from "./database-model/entities/product/product-schema";
-import {seedProducts} from "./database-model/seed/product";
-import {ProductManager} from "./database-model/entities/product/product-manager";
+} from "./database-model/features/product/schemas/product-schema";
+import {seedProducts} from "./database-model/features/product/seed/product";
+import {ProductManager} from "./database-model/features/product/manager/product-manager";
 
 import {log} from "./utilities/utilities";
 

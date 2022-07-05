@@ -1,4 +1,4 @@
-import {Product} from "../../entities/product/product-schema";
+import {Product} from "../../schemas/product-schema";
 
 export const categories_data_array_: string[] =
     [

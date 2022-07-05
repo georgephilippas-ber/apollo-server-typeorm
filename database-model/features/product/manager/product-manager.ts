@@ -1,5 +1,5 @@
-import {DatabaseProvider} from "../../../database/database-provider";
-import {Product, ProductCategory} from "./product-schema";
+import {DatabaseProvider} from "../../../../database/database-provider";
+import {Product, ProductCategory} from "../schemas/product-schema";
 
 export class ProductManager
 {

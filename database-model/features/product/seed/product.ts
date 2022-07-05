@@ -1,6 +1,6 @@
-import {ProductManager} from "../entities/product/product-manager";
+import {ProductManager} from "../manager/product-manager";
 import {categories_data_array_, product_data_array_} from "./data/product";
-import {Product, ProductCategory} from "../entities/product/product-schema";
+import {Product, ProductCategory} from "../schemas/product-schema";
 
 async function createCategories(productManager_: ProductManager): Promise<ProductCategory[]>
 {
