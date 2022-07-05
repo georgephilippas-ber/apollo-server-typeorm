@@ -13,8 +13,6 @@ import {
 import {ProductPhoto} from "./database/database-model/features/product/schemas/product-photo-schema";
 import {apolloServer} from "./server/server";
 
-import {combine, log} from "./utilities/utilities";
-
 let main = async () =>
 {
     let databaseProvider_ = new DatabaseProvider([Product, ProductCategory, ProductPhoto, NutritionalValue, Carbohydrates, Fat, Vitamins, Minerals,]);

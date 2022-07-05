@@ -2,7 +2,7 @@ import {Resolver} from "../resolver";
 
 class ProductResolver extends Resolver
 {
-    getResolver(): any
+    getQueryResolver(): any
     {
         return {
             default: () => "this"

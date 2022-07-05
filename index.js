@@ -22,4 +22,4 @@ let main = async () => {
         await databaseProvider_.destroy();
     });
 };
-//main().then(value => null);
+main().then(value => null);

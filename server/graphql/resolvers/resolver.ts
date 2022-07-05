@@ -2,10 +2,14 @@ import {combine} from "../../../utilities/utilities";
 
 export abstract class Resolver
 {
-    public abstract getResolver(): any;
+    public abstract getQueryResolver(): any;
 }
 
 export function compileResolvers(resolvers_array_: Resolver[]): any
 {
-    return combine(resolvers_array_.map(value => value.getResolver()));
+    let query_resolvers_ = combine(resolvers_array_.map(value => value.getQueryResolver()));
+
+    return {
+        Query: query_resolvers_,
+    };
 }

@@ -10,7 +10,6 @@ function compileSchema(): GraphQLSchema
     let schemas_path_ = path.join(__dirname, "graphql", "schemas");
 
     let aggregate_schema_: string = fs.readdirSync(schemas_path_).map(value => fs.readFileSync(path.join(schemas_path_, value))).reduce((previousValue, currentValue) => previousValue + currentValue, "");
-    console.log(aggregate_schema_);
 
     return buildSchema(aggregate_schema_);
 }
@@ -18,7 +17,7 @@ function compileSchema(): GraphQLSchema
 export async function apolloServer(port: number = 4_000): Promise<ApolloServer>
 {
     let server_ = new ApolloServer({
-        schema: compileSchema(),
+        typeDefs: compileSchema(),
         resolvers: compileResolvers([productResolver]),
     });
 
