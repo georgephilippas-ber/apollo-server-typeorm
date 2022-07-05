@@ -14,10 +14,11 @@ export class ProductResolver extends Resolver
         this.productManager = productManager;
     }
 
+
     getQueryResolver(): any
     {
         return {
-            random: () => faker.word.noun()
+            all: () => this.productManager.all()
         };
     }
 }

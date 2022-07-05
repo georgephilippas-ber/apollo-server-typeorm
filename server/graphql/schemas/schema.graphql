@@ -1,3 +1,35 @@
-type Query {
-    random: String
+type Query
+{
+    all: [Product]
+}
+
+type ProductPhoto
+{
+    id: ID
+    identifier: String
+    uri: String
+}
+
+type ProductCategory
+{
+    id: ID,
+    category_name: String
+}
+
+type NutritionalValue
+{
+    id: ID
+    energy: Float
+    protein: Float
+}
+
+type Product
+{
+    id: ID
+    name: String
+    warning: String
+    product_type: String
+    photos: [ProductPhoto]
+    categories: [ProductCategory]
+    nutritional_value: NutritionalValue
 }
