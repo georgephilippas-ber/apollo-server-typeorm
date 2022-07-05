@@ -1,6 +1,7 @@
-import {Column, Entity, JoinColumn, JoinTable, ManyToMany, OneToOne, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, JoinColumn, JoinTable, ManyToMany, OneToMany, OneToOne, PrimaryGeneratedColumn} from "typeorm";
 
 import {NutritionalValue} from "./nutritional-value-schema";
+import {ProductPhoto} from "./product-photo";
 
 type product_type_type_ = "generic" | "commercial";
 
@@ -18,6 +19,9 @@ export class Product
 
     @Column({type: "text", nullable: false, unique: true, default: "commercial"})
     product_type?: product_type_type_;
+
+    @ManyToMany(() => ProductPhoto, {eager: true, cascade: true})
+    photos?: ProductPhoto[];
 
     @OneToOne(() => NutritionalValue, {eager: true, cascade: true})
     @JoinColumn()

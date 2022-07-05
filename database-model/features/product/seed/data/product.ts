@@ -2,7 +2,7 @@ import {Product} from "../../schemas/product-schema";
 
 export const categories_data_array_: string[] =
     [
-        "cereal",
+        "cereal", "fruit"
     ];
 
 export const product_data_array_: { product: Product, categories: string[] }[] = [
@@ -40,5 +40,42 @@ export const product_data_array_: { product: Product, categories: string[] }[] =
                     }
             },
         categories: ["cereal"]
+    },
+    {
+        product:
+            {
+                name: "banana",
+                product_type: "generic",
+                nutritional_value:
+                    {
+                        energy: 89.,
+                        protein: 1.1,
+                        carbohydrates:
+                            {
+                                carbohydrates_total: 22.8,
+                                sugar: 12.2,
+                                fibre: 2.6
+                            },
+                        fat:
+                            {
+                                fat_total: 0.3
+                            },
+                        vitamins:
+                            {
+                                retinol: 0.0192,
+                                ascorbicAcid: 8.7,
+                                niacin: 0.7,
+                                folicAcid: 0.02,
+                                pyridoxine: 0.4,
+                            },
+                        minerals:
+                            {
+                                calcium: 5,
+                                potassium: 358,
+                                iron: 0.3
+                            }
+                    }
+            },
+        categories: ["fruit"]
     }
 ];

@@ -1,18 +1,18 @@
 import {DatabaseProvider} from "./database/database-provider";
-import {
-    Carbohydrates,
-    Fat,
-    Minerals,
-    NutritionalValue,
-    Product, ProductCategory,
-    Vitamins
-} from "./database-model/features/product/schemas/product-schema";
+
 import {seedProducts} from "./database-model/features/product/seed/product";
 import {ProductManager} from "./database-model/features/product/manager/product-manager";
 
 import {log} from "./utilities/utilities";
+import {Product, ProductCategory} from "./database-model/features/product/schemas/product-schema";
+import {
+    Carbohydrates,
+    Fat, Minerals,
+    NutritionalValue,
+    Vitamins
+} from "./database-model/features/product/schemas/nutritional-value-schema";
 
-let databaseProvider_ = new DatabaseProvider([Product, NutritionalValue, Carbohydrates, Fat, Vitamins, Minerals, ProductCategory]);
+let databaseProvider_ = new DatabaseProvider([Product, ProductCategory, NutritionalValue, Carbohydrates, Fat, Vitamins, Minerals,]);
 
 (async () =>
 {
