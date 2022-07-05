@@ -36,7 +36,11 @@ export class ApolloExpressServer
         await this.apolloServer_.start();
         this.apolloServer_.applyMiddleware({app: this.express_application_});
 
-        return this.httpServer_.listen(port, () => console.log(this.apolloServer_.graphqlPath));
+        return this.httpServer_.listen(port, () =>
+        {
+            console.log(["http://localhost:", port, "/authentication"]);
+            console.log(["http://localhost:", port, this.apolloServer_.graphqlPath].join(""));
+        });
     }
 
     async stop()
