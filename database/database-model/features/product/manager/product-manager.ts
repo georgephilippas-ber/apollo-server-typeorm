@@ -1,4 +1,4 @@
-import {DatabaseProvider} from "../../../../database/database-provider";
+import {DatabaseProvider} from "../../../../database-provider";
 import {Product, ProductCategory} from "../schemas/product-schema";
 import {ProductPhoto} from "../schemas/product-photo-schema";
 
