@@ -2,12 +2,11 @@ import {DatabaseProvider} from "./database/database-provider";
 
 import {seedProducts} from "./database-model/features/product/seed/seed-product";
 import {ProductManager} from "./database-model/features/product/manager/product-manager";
-
-import {log} from "./utilities/utilities";
 import {Product, ProductCategory} from "./database-model/features/product/schemas/product-schema";
 import {
     Carbohydrates,
-    Fat, Minerals,
+    Fat,
+    Minerals,
     NutritionalValue,
     Vitamins
 } from "./database-model/features/product/schemas/nutritional-value-schema";
@@ -39,4 +38,3 @@ let databaseProvider_ = new DatabaseProvider([Product, ProductCategory, ProductP
         await databaseProvider_.destroy();
     })
 })();
-
