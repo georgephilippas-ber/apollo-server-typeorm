@@ -13,10 +13,12 @@ import {
 import {ProductPhoto} from "./database/database-model/features/product/schemas/product-photo-schema";
 import {apolloServer} from "./server/server";
 
-let databaseProvider_ = new DatabaseProvider([Product, ProductCategory, ProductPhoto, NutritionalValue, Carbohydrates, Fat, Vitamins, Minerals,]);
+import {log} from "./utilities/utilities";
 
-(async () =>
+let main = async () =>
 {
+    let databaseProvider_ = new DatabaseProvider([Product, ProductCategory, ProductPhoto, NutritionalValue, Carbohydrates, Fat, Vitamins, Minerals,]);
+
     await databaseProvider_.initialize();
 
     let productManager: ProductManager = new ProductManager(databaseProvider_);
@@ -37,4 +39,6 @@ let databaseProvider_ = new DatabaseProvider([Product, ProductCategory, ProductP
         console.log("!databaseProvider_");
         await databaseProvider_.destroy();
     })
-})();
+};
+
+main().then(value => null);
