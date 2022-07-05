@@ -33,7 +33,6 @@ export class ProductManager
     async createProduct(product: Product, categories_: string[] = []): Promise<Product>
     {
         product.categories_ = await Promise.all(categories_.map(value => this.productCategoryByName(value)));
-        console.log(product);
 
         return this.databaseProvider.getDataSource().getRepository(Product).save(product);
     }

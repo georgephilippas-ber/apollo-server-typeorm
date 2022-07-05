@@ -1,18 +1,13 @@
 import {Product} from "../../entities/product/product-schema";
 
-export const categories_data_: string[] =
+export const categories_data_array_: string[] =
     [
         "cereal", "fruit"
     ];
 
-type product_data_type_ = {
-    product_: Product;
-    categories_: string[];
-}
-
-export const product_data_: product_data_type_[] = [
+export const product_data_array_: { product: Product, categories: string[] }[] = [
     {
-        product_:
+        product:
             {
                 name: "FITNESS Flakes",
                 nutritional_value:
@@ -43,6 +38,6 @@ export const product_data_: product_data_type_[] = [
                             }
                     }
             },
-        categories_: ["cereal"]
+        categories: ["cereal"]
     }
 ];
