@@ -1,5 +1,6 @@
 import {DatabaseProvider} from "../../../../database/database-provider";
 import {Product, ProductCategory} from "../schemas/product-schema";
+import {ProductPhoto} from "../schemas/product-photo-schema";
 
 export class ProductManager
 {
@@ -20,7 +21,12 @@ export class ProductManager
         return this.databaseProvider.getDataSource().getRepository(ProductCategory).save({category_name: category_name});
     }
 
-    async productCategoryByName(category_name: string): Promise<ProductCategory>
+    async createPhoto(identifier: string, uri: string)
+    {
+        return this.databaseProvider.getDataSource().getRepository(ProductPhoto).save({identifier, uri});
+    }
+
+    async categoryByName(category_name: string): Promise<ProductCategory>
     {
         let product_category_ = await this.databaseProvider.getDataSource().getRepository(ProductCategory).findOne({where: {category_name: category_name}});
 
@@ -30,9 +36,20 @@ export class ProductManager
             return product_category_;
     }
 
-    async createProduct(product: Product, categories_: string[] = []): Promise<Product>
+    async photoByIdentifier(identifier: string): Promise<ProductPhoto>
     {
-        product.categories_ = await Promise.all(categories_.map(value => this.productCategoryByName(value)));
+        let product_photo_ = await this.databaseProvider.getDataSource().getRepository(ProductPhoto).findOne({where: {identifier: identifier}});
+
+        if (!product_photo_)
+            throw new Error();
+        else
+            return product_photo_;
+    }
+
+    async createProduct(product: Product, categories_: string[], photo_identifiers_: string[]): Promise<Product>
+    {
+        product.categories = await Promise.all(categories_.map(value => this.categoryByName(value)));
+        product.photos = await Promise.all(photo_identifiers_.map(value => this.photoByIdentifier(value)));
 
         return this.databaseProvider.getDataSource().getRepository(Product).save(product);
     }

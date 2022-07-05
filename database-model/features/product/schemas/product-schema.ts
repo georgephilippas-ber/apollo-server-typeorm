@@ -1,7 +1,7 @@
 import {Column, Entity, JoinColumn, JoinTable, ManyToMany, OneToMany, OneToOne, PrimaryGeneratedColumn} from "typeorm";
 
 import {NutritionalValue} from "./nutritional-value-schema";
-import {ProductPhoto} from "./product-photo";
+import {ProductPhoto} from "./product-photo-schema";
 
 type product_type_type_ = "generic" | "commercial";
 
@@ -21,6 +21,7 @@ export class Product
     product_type?: product_type_type_;
 
     @ManyToMany(() => ProductPhoto, {eager: true, cascade: true})
+    @JoinTable()
     photos?: ProductPhoto[];
 
     @OneToOne(() => NutritionalValue, {eager: true, cascade: true})
@@ -29,7 +30,7 @@ export class Product
 
     @ManyToMany(() => ProductCategory, {eager: true, cascade: true})
     @JoinTable()
-    categories_?: ProductCategory[];
+    categories?: ProductCategory[];
 }
 
 @Entity()

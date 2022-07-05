@@ -6,7 +6,8 @@ const product_manager_1 = require("./database-model/features/product/manager/pro
 const utilities_1 = require("./utilities/utilities");
 const product_schema_1 = require("./database-model/features/product/schemas/product-schema");
 const nutritional_value_schema_1 = require("./database-model/features/product/schemas/nutritional-value-schema");
-let databaseProvider_ = new database_provider_1.DatabaseProvider([product_schema_1.Product, product_schema_1.ProductCategory, nutritional_value_schema_1.NutritionalValue, nutritional_value_schema_1.Carbohydrates, nutritional_value_schema_1.Fat, nutritional_value_schema_1.Vitamins, nutritional_value_schema_1.Minerals,]);
+const product_photo_schema_1 = require("./database-model/features/product/schemas/product-photo-schema");
+let databaseProvider_ = new database_provider_1.DatabaseProvider([product_schema_1.Product, product_schema_1.ProductCategory, product_photo_schema_1.ProductPhoto, nutritional_value_schema_1.NutritionalValue, nutritional_value_schema_1.Carbohydrates, nutritional_value_schema_1.Fat, nutritional_value_schema_1.Vitamins, nutritional_value_schema_1.Minerals,]);
 (async () => {
     await databaseProvider_.initialize();
     let productManager = new product_manager_1.ProductManager(databaseProvider_);

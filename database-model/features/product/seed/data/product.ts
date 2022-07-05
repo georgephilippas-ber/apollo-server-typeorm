@@ -1,11 +1,23 @@
 import {Product} from "../../schemas/product-schema";
+import {ProductPhoto} from "../../schemas/product-photo-schema";
 
 export const categories_data_array_: string[] =
     [
         "cereal", "fruit"
     ];
 
-export const product_data_array_: { product: Product, categories: string[] }[] = [
+export const photos_data_array_: ProductPhoto[] = [
+    {
+        identifier: "FITNESS Flakes",
+        uri: "https://www.nestle-cereals.com/de/sites/g/files/fawtmp126/files/styles/scale_992_webp/public/d7/cpp_44083713_fitness_375g_de_at_ch_2021_3d_p99_1.png"
+    },
+    {
+        identifier: "banana",
+        uri: "https://images.unsplash.com/photo-1561058325-8c99b449e3b6"
+    }
+];
+
+export const products_data_array_: { product: Product, categories: string[], photo_identifiers: string[] }[] = [
     {
         product:
             {
@@ -39,7 +51,8 @@ export const product_data_array_: { product: Product, categories: string[] }[] =
                             }
                     }
             },
-        categories: ["cereal"]
+        categories: ["cereal"],
+        photo_identifiers: ["FITNESS Flakes"]
     },
     {
         product:
@@ -76,6 +89,7 @@ export const product_data_array_: { product: Product, categories: string[] }[] =
                             }
                     }
             },
-        categories: ["fruit"]
+        categories: ["fruit"],
+        photo_identifiers: ["banana"]
     }
 ];
