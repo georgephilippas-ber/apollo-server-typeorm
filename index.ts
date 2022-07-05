@@ -14,6 +14,8 @@ import {ProductPhoto} from "./database/database-model/features/product/schemas/p
 
 import {ApolloExpressServer} from "./server/server";
 import {ProductResolver} from "./server/graphql/resolvers/product/product-resolver";
+import {AuthenticationRouter} from "./server/authentication/routers/authentication/authentication";
+import {AgentManager} from "./database/database-model/features/agent/manager/agent-manager";
 
 let main = async () =>
 {
@@ -22,9 +24,13 @@ let main = async () =>
 
     let productManager: ProductManager = new ProductManager(databaseProvider_);
 
+    let agentManager: AgentManager = new AgentManager(databaseProvider_);
+
     await seedProducts(productManager);
 
     let server_ = new ApolloExpressServer([new ProductResolver(productManager)]);
+
+    let authenticationRouter = new AuthenticationRouter(server_.express_application_, agentManager);
 
     await server_.start();
 
