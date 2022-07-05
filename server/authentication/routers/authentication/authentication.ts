@@ -15,7 +15,7 @@ import {TokenFactory} from "../../../../core/token/token";
 import {Router} from "express";
 
 import {isolate, specifies, toInteger} from "../../../../core/utilities/utilities";
-import {authenticationConfiguration} from "../../../../configuration/configuration";
+import {authenticationConfiguration} from "../../../../configuration/authentication";
 
 export class AuthenticationRouter
 {

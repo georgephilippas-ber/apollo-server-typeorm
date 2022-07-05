@@ -38,7 +38,7 @@ export class ApolloExpressServer
 
         return this.httpServer_.listen(port, () =>
         {
-            console.log(["http://localhost:", port, "/authentication"]);
+            console.log(["http://localhost:", port, "/authentication"].join(""));
             console.log(["http://localhost:", port, this.apolloServer_.graphqlPath].join(""));
         });
     }
