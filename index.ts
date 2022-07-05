@@ -12,6 +12,7 @@ import {
     Vitamins
 } from "./database-model/features/product/schemas/nutritional-value-schema";
 import {ProductPhoto} from "./database-model/features/product/schemas/product-photo-schema";
+import {apolloServer} from "./server/server";
 
 let databaseProvider_ = new DatabaseProvider([Product, ProductCategory, ProductPhoto, NutritionalValue, Carbohydrates, Fat, Vitamins, Minerals,]);
 
@@ -23,8 +24,19 @@ let databaseProvider_ = new DatabaseProvider([Product, ProductCategory, ProductP
 
     await seedProducts(productManager);
 
-    log(await productManager.all());
+    //log(await productManager.all());
 
-    await databaseProvider_.destroy();
+    let server_ = await apolloServer();
+
+    process.on("SIGINT", async args =>
+    {
+        console.log();
+
+        console.log("!apolloServer");
+        await server_.stop();
+
+        console.log("!databaseProvider_");
+        await databaseProvider_.destroy();
+    })
 })();
 
