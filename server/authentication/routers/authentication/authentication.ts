@@ -25,7 +25,7 @@ export class AuthenticationRouter
 
     authenticationRouter: Router;
 
-    constructor(expressApplication: Express, agentManager: AgentManager)
+    constructor(expressApplication: Express, agentManager: AgentManager, router_endpoint_: string = "authentication")
     {
         this.expressApplication = expressApplication;
 
@@ -33,7 +33,7 @@ export class AuthenticationRouter
 
         this.register_routes();
 
-        this.expressApplication.use(this.authenticationRouter);
+        this.expressApplication.use("/" + router_endpoint_, this.authenticationRouter);
 
         this.agentManager = agentManager;
     }
