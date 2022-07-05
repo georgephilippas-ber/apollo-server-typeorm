@@ -21,6 +21,7 @@ type ProductCategory
 type NutritionalValue
 {
     id: ID!
+
     energy: Float
     protein: Float
 
