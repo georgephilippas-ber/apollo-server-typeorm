@@ -1,4 +1,4 @@
-import {Agent} from "../../database/database-model/features/agent/schemas/agent";
+import {Agent} from "../../database/database-model/features/agent/schemas/agent-schema";
 
 import * as jwt from 'jsonwebtoken';
 import {isolate, specifies} from "../utilities/utilities";
