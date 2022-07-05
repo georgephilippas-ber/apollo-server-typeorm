@@ -32,6 +32,8 @@ let main = async () =>
 
     let authenticationRouter = new AuthenticationRouter(server_.express_application_, agentManager);
 
+    authenticationRouter.register_router();
+
     await server_.start();
 
     process.on("SIGINT", async args =>
