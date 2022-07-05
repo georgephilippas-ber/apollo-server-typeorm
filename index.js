@@ -9,12 +9,12 @@ const product_photo_schema_1 = require("./database/database-model/features/produ
 const server_1 = require("./server/server");
 const product_resolver_1 = require("./server/graphql/resolvers/product/product-resolver");
 let main = async () => {
-    let databaseProvider_ = new database_provider_1.DatabaseProvider([product_schema_1.Product, product_schema_1.ProductCategory, product_photo_schema_1.ProductPhoto, nutritional_value_schema_1.NutritionalValue, nutritional_value_schema_1.Carbohydrates, nutritional_value_schema_1.Fat, nutritional_value_schema_1.Vitamins, nutritional_value_schema_1.Minerals,]);
+    let databaseProvider_ = new database_provider_1.DatabaseProvider("products", [product_schema_1.Product, product_schema_1.ProductCategory, product_photo_schema_1.ProductPhoto, nutritional_value_schema_1.NutritionalValue, nutritional_value_schema_1.Carbohydrates, nutritional_value_schema_1.Fat, nutritional_value_schema_1.Vitamins, nutritional_value_schema_1.Minerals,]);
     await databaseProvider_.initialize();
     let productManager = new product_manager_1.ProductManager(databaseProvider_);
     await (0, seed_product_1.seedProducts)(productManager);
-    let server_ = new server_1.GraphQLServer([new product_resolver_1.ProductResolver(productManager)]);
-    server_.start().then(value => console.log(value.url));
+    let server_ = new server_1.ApolloExpressServer([new product_resolver_1.ProductResolver(productManager)]);
+    await server_.start();
     process.on("SIGINT", async (args) => {
         console.log();
         console.log("!apolloServer");

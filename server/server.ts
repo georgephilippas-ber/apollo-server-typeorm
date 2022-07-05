@@ -1,29 +1,48 @@
-import {ApolloServer} from "apollo-server";
+import {ApolloServer} from "apollo-server-express";
+import {ApolloServerPluginDrainHttpServer} from "apollo-server-core";
+
 import {buildSchema, GraphQLSchema} from "graphql";
 import * as path from "path";
 import * as fs from "fs";
 import {compileResolvers, Resolver} from "./graphql/resolvers/resolver";
+import express, {Express} from "express";
+import http from "http";
 
-export class GraphQLServer
+export class ApolloExpressServer
 {
-    server_: ApolloServer;
+    express_application_: Express;
+
+    httpServer_: http.Server;
+
+    apolloServer_: ApolloServer;
 
     constructor(resolvers_array_: Resolver[])
     {
-        this.server_ = new ApolloServer({
+        this.express_application_ = express();
+
+        this.httpServer_ = http.createServer(this.express_application_);
+
+        this.apolloServer_ = new ApolloServer({
             typeDefs: compileSchema(),
             resolvers: compileResolvers(resolvers_array_),
+            csrfPrevention: true,
+            cache: 'bounded',
+            plugins: [ApolloServerPluginDrainHttpServer({httpServer: this.httpServer_})],
         });
     }
 
-    start(port: number = 4_000)
+    async start(port: number = 4_000)
     {
-        return this.server_.listen({port});
+        await this.apolloServer_.start();
+        this.apolloServer_.applyMiddleware({app: this.express_application_});
+
+        return this.httpServer_.listen(port, () => console.log(this.apolloServer_.graphqlPath));
     }
 
-    stop()
+    async stop()
     {
-        return this.server_.stop();
+        await this.apolloServer_.stop();
+        this.httpServer_.close();
     }
 }
 

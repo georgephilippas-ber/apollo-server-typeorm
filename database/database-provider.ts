@@ -6,11 +6,11 @@ export class DatabaseProvider
 
     initialized_: boolean;
 
-    constructor(entities_array_: Function[])
+    constructor(database_name_: string, entities_array_: Function[])
     {
         this.dataSource = new DataSource({
             type: "sqlite",
-            database: "database.db",
+            database: [database_name_, ".db"].join(""),
             synchronize: true,
             logging: false,
             logger: "simple-console",

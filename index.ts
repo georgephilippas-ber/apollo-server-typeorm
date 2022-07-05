@@ -12,21 +12,21 @@ import {
 } from "./database/database-model/features/product/schemas/nutritional-value-schema";
 import {ProductPhoto} from "./database/database-model/features/product/schemas/product-photo-schema";
 
-import {GraphQLServer} from "./server/server";
+import {ApolloExpressServer} from "./server/server";
 import {ProductResolver} from "./server/graphql/resolvers/product/product-resolver";
 
 let main = async () =>
 {
-    let databaseProvider_ = new DatabaseProvider([Product, ProductCategory, ProductPhoto, NutritionalValue, Carbohydrates, Fat, Vitamins, Minerals,]);
+    let databaseProvider_ = new DatabaseProvider("products", [Product, ProductCategory, ProductPhoto, NutritionalValue, Carbohydrates, Fat, Vitamins, Minerals,]);
     await databaseProvider_.initialize();
 
     let productManager: ProductManager = new ProductManager(databaseProvider_);
 
     await seedProducts(productManager);
 
-    let server_ = new GraphQLServer([new ProductResolver(productManager)]);
+    let server_ = new ApolloExpressServer([new ProductResolver(productManager)]);
 
-    server_.start().then(value => console.log(value.url));
+    await server_.start();
 
     process.on("SIGINT", async args =>
     {
