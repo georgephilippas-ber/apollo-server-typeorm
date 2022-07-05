@@ -2,7 +2,7 @@ import {Product} from "../../entities/product/product-schema";
 
 export const categories_data_array_: string[] =
     [
-        "cereal", "fruit"
+        "cereal",
     ];
 
 export const product_data_array_: { product: Product, categories: string[] }[] = [
