@@ -14,7 +14,6 @@ import {log} from "./utilities/utilities";
 
 let databaseProvider_ = new DatabaseProvider([Product, NutritionalValue, Carbohydrates, Fat, Vitamins, Minerals, ProductCategory]);
 
-
 (async () =>
 {
     await databaseProvider_.initialize();
