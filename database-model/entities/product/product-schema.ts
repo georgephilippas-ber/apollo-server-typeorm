@@ -1,23 +1,38 @@
-import {Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, JoinColumn, JoinTable, ManyToMany, OneToOne, PrimaryGeneratedColumn} from "typeorm";
 
 @Entity()
 export class Product
 {
     @PrimaryGeneratedColumn()
-    id!: number;
+    id?: number;
 
     @Column({type: "text", nullable: false, unique: true})
+    name!: string;
 
-    @OneToOne(() => NutritionalValue)
+    @OneToOne(() => NutritionalValue, {eager: true})
     @JoinColumn()
     nutritional_value?: NutritionalValue;
+
+    @ManyToMany(() => ProductCategory, {eager: true})
+    @JoinTable()
+    categories_?: ProductCategory[];
+}
+
+@Entity()
+export class ProductCategory
+{
+    @PrimaryGeneratedColumn()
+    id?: number;
+
+    @Column({type: "text", nullable: false, unique: true})
+    category_name!: string;
 }
 
 @Entity()
 export class NutritionalValue
 {
     @PrimaryGeneratedColumn()
-    id!: number;
+    id?: number;
 
     @Column({type: "float", nullable: false})
     energy!: number;
@@ -46,42 +61,42 @@ export class NutritionalValue
 export class Carbohydrates
 {
     @PrimaryGeneratedColumn()
-    id!: number;
+    id?: number;
 
     @Column({type: "float", nullable: false})
-    remaining_carbohydrates!: number;
+    carbohydrates_total!: number;
 
     @Column({type: "float", nullable: true})
-    sugar!: number;
+    sugar?: number;
 
     @Column({type: "float", nullable: true})
-    fibre!: number;
+    fibre?: number;
 }
 
 @Entity()
 export class Fat
 {
     @PrimaryGeneratedColumn()
-    id!: number;
+    id?: number;
 
     @Column({type: "float", nullable: false})
-    remaining_fat!: number;
+    fat_total!: number;
 
     @Column({type: "float", nullable: true})
-    unsaturated!: number;
+    unsaturated?: number;
 
     @Column({type: "float", nullable: true})
-    saturated!: number;
+    saturated?: number;
 
     @Column({type: "float", nullable: true})
-    trans!: number;
+    trans?: number;
 }
 
 @Entity()
 export class Vitamins
 {
     @PrimaryGeneratedColumn()
-    id!: number;
+    id?: number;
 
     @Column({type: "float", nullable: true})
     retinol?: number;
@@ -114,7 +129,7 @@ export class Vitamins
 export class Minerals
 {
     @PrimaryGeneratedColumn()
-    id!: number;
+    id?: number;
 
     @Column({type: "float", nullable: true})
     calcium?: number;

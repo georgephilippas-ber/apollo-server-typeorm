@@ -12,9 +12,10 @@ export class DatabaseProvider
             type: "sqlite",
             database: "database.db",
             synchronize: true,
-            logging: true,
+            logging: false,
             logger: "simple-console",
-            entities: entities_array_
+            entities: entities_array_,
+            dropSchema: true
         });
 
         this.initialized_ = false;

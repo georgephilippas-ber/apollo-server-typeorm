@@ -4,24 +4,21 @@ import {
     Fat,
     Minerals,
     NutritionalValue,
-    Product,
+    Product, ProductCategory,
     Vitamins
-} from "./database-model/entities/product/product";
+} from "./database-model/entities/product/product-schema";
+import {seedProducts} from "./database-model/seed/product";
+import {ProductManager} from "./database-model/entities/product/product-manager";
 
-let databaseProvider_ = new DatabaseProvider([Product, NutritionalValue, Carbohydrates, Fat, Vitamins, Minerals]);
+let databaseProvider_ = new DatabaseProvider([Product, NutritionalValue, Carbohydrates, Fat, Vitamins, Minerals, ProductCategory]);
 
 (async () =>
 {
     await databaseProvider_.initialize();
 
-    let product_ = new Product();
-    product_.nutritional_value = new NutritionalValue();
-    product_.nutritional_value.carbohydrates = new Carbohydrates()
-    product_.nutritional_value.fat = new Fat();
-    product_.nutritional_value.minerals = new Minerals();
+    let productManager: ProductManager = new ProductManager(databaseProvider_);
 
-    product_.nutritional_value["energy"] = 10;
+    await seedProducts(productManager);
 
-
-    databaseProvider_.getDataSource().manager.create(Product)
+    //console.log(await productManager.all());
 })();
