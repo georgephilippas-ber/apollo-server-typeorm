@@ -1,4 +1,4 @@
-import {combine} from "../../../utilities/utilities";
+import {combine} from "../../../core/utilities/utilities";
 
 export abstract class Resolver
 {
