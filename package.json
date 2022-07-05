@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/georgephilippas-ber/apollo-graphql-typeorm#readme",
   "dependencies": {
+    "@faker-js/faker": "^7.3.0",
     "apollo-server": "^3.9.0",
     "graphql": "^16.5.0",
     "sqlite3": "^5.0.8",

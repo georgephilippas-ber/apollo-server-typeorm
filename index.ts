@@ -11,7 +11,9 @@ import {
     Vitamins
 } from "./database/database-model/features/product/schemas/nutritional-value-schema";
 import {ProductPhoto} from "./database/database-model/features/product/schemas/product-photo-schema";
-import {apolloServer} from "./server/server";
+
+import {GraphQLServer} from "./server/server";
+import {ProductResolver} from "./server/graphql/resolvers/product/product-resolver";
 
 let main = async () =>
 {
@@ -23,9 +25,9 @@ let main = async () =>
 
     await seedProducts(productManager);
 
-    //log(await productManager.all());
+    let server_ = new GraphQLServer([new ProductResolver(productManager)]);
 
-    let server_ = await apolloServer();
+    server_.start().then(value => console.log(value.url));
 
     process.on("SIGINT", async args =>
     {

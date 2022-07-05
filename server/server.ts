@@ -2,8 +2,30 @@ import {ApolloServer} from "apollo-server";
 import {buildSchema, GraphQLSchema} from "graphql";
 import * as path from "path";
 import * as fs from "fs";
-import {compileResolvers} from "./graphql/resolvers/resolver";
-import {productResolver} from "./graphql/resolvers/product/product-resolver";
+import {compileResolvers, Resolver} from "./graphql/resolvers/resolver";
+
+export class GraphQLServer
+{
+    server_: ApolloServer;
+
+    constructor(resolvers_array_: Resolver[])
+    {
+        this.server_ = new ApolloServer({
+            typeDefs: compileSchema(),
+            resolvers: compileResolvers(resolvers_array_),
+        });
+    }
+
+    start(port: number = 4_000)
+    {
+        return this.server_.listen({port});
+    }
+
+    stop()
+    {
+        return this.server_.stop();
+    }
+}
 
 function compileSchema(): GraphQLSchema
 {
@@ -12,16 +34,4 @@ function compileSchema(): GraphQLSchema
     let aggregate_schema_: string = fs.readdirSync(schemas_path_).map(value => fs.readFileSync(path.join(schemas_path_, value))).reduce((previousValue, currentValue) => previousValue + currentValue, "");
 
     return buildSchema(aggregate_schema_);
-}
-
-export async function apolloServer(port: number = 4_000): Promise<ApolloServer>
-{
-    let server_ = new ApolloServer({
-        typeDefs: compileSchema(),
-        resolvers: compileResolvers([productResolver]),
-    });
-
-    server_.listen({port}).then(value => console.log(value.url));
-
-    return server_;
 }
