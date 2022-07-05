@@ -13,7 +13,7 @@ import {
 import {ProductPhoto} from "./database/database-model/features/product/schemas/product-photo-schema";
 import {apolloServer} from "./server/server";
 
-import {log} from "./utilities/utilities";
+import {combine, log} from "./utilities/utilities";
 
 let main = async () =>
 {

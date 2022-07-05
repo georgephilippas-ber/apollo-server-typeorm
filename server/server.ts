@@ -3,6 +3,7 @@ import {buildSchema, GraphQLSchema} from "graphql";
 import * as path from "path";
 import * as fs from "fs";
 import {compileResolvers} from "./graphql/resolvers/resolver";
+import {productResolver} from "./graphql/resolvers/product/product-resolver";
 
 function compileSchema(): GraphQLSchema
 {
@@ -18,7 +19,7 @@ export async function apolloServer(port: number = 4_000): Promise<ApolloServer>
 {
     let server_ = new ApolloServer({
         schema: compileSchema(),
-        resolvers: compileResolvers([]),
+        resolvers: compileResolvers([productResolver]),
     });
 
     server_.listen({port}).then(value => console.log(value.url));
