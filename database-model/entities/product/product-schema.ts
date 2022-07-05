@@ -9,11 +9,11 @@ export class Product
     @Column({type: "text", nullable: false, unique: true})
     name!: string;
 
-    @OneToOne(() => NutritionalValue, {eager: true})
+    @OneToOne(() => NutritionalValue, {eager: true, cascade: true})
     @JoinColumn()
     nutritional_value?: NutritionalValue;
 
-    @ManyToMany(() => ProductCategory, {eager: true})
+    @ManyToMany(() => ProductCategory, {eager: true, cascade: true})
     @JoinTable()
     categories_?: ProductCategory[];
 }
@@ -37,22 +37,22 @@ export class NutritionalValue
     @Column({type: "float", nullable: false})
     energy!: number;
 
-    @OneToOne(() => Carbohydrates, {cascade: true})
+    @OneToOne(() => Carbohydrates, {eager: true, cascade: true})
     @JoinColumn()
     carbohydrates!: Carbohydrates;
 
-    @OneToOne(() => Fat, {cascade: true})
+    @OneToOne(() => Fat, {eager: true, cascade: true})
     @JoinColumn()
     fat!: Fat;
 
     @Column({type: "float", nullable: false})
     protein!: number;
 
-    @OneToOne(() => Vitamins, {cascade: true})
+    @OneToOne(() => Vitamins, {eager: true, cascade: true})
     @JoinColumn()
     vitamins?: Vitamins;
 
-    @OneToOne(() => Minerals, {cascade: true})
+    @OneToOne(() => Minerals, {eager: true, cascade: true})
     @JoinColumn()
     minerals?: Minerals;
 }

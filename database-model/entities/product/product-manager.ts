@@ -10,7 +10,7 @@ export class ProductManager
         this.databaseProvider = databaseProvider;
     }
 
-    async allProductCategory(): Promise<ProductCategory[]>
+    async allProductCategories(): Promise<ProductCategory[]>
     {
         return this.databaseProvider.getDataSource().getRepository(ProductCategory).find({});
     }

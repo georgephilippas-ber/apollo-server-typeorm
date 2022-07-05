@@ -9,5 +9,5 @@ let databaseProvider_ = new database_provider_1.DatabaseProvider([product_schema
     await databaseProvider_.initialize();
     let productManager = new product_manager_1.ProductManager(databaseProvider_);
     await (0, product_1.seedProducts)(productManager);
-    //console.log(await productManager.all());
+    console.log(await productManager.all());
 })();

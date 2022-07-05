@@ -20,5 +20,5 @@ let databaseProvider_ = new DatabaseProvider([Product, NutritionalValue, Carbohy
 
     await seedProducts(productManager);
 
-    //console.log(await productManager.all());
+    console.log(await productManager.all());
 })();
