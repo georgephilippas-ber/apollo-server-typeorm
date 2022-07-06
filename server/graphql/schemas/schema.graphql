@@ -1,6 +1,7 @@
 type Query
 {
     all: [Product]
+    queryByProductName(partial_product_name_: String): [Product]
 }
 
 type ProductPhoto

@@ -1,6 +1,7 @@
 import {DatabaseProvider} from "../../../../database-provider";
 import {Product, ProductCategory} from "../schemas/product-schema";
 import {ProductPhoto} from "../schemas/product-photo-schema";
+import {ILike} from "typeorm";
 
 export class ProductManager
 {
@@ -52,6 +53,15 @@ export class ProductManager
         product.photos = await Promise.all(photo_identifiers_.map(value => this.photoByIdentifier(value)));
 
         return this.databaseProvider.getDataSource().getRepository(Product).save(product);
+    }
+
+    async queryByProductName(partial_product_name_: string): Promise<Product[]>
+    {
+        return this.databaseProvider.getDataSource().getRepository(Product).find({
+            where: {
+                name: ILike("%" + partial_product_name_ + "%")
+            }
+        });
     }
 
     async all(): Promise<Product[]>
