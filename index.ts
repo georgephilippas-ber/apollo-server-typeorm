@@ -16,15 +16,18 @@ import {ApolloExpressServer} from "./server/server";
 import {ProductResolver} from "./server/graphql/resolvers/product/product-resolver";
 import {AuthenticationRouter} from "./server/authentication/routers/authentication/authentication";
 import {AgentManager} from "./database/database-model/features/agent/manager/agent-manager";
+import {Agent} from "./database/database-model/features/agent/schemas/agent-schema";
 
 let main = async () =>
 {
-    let databaseProvider_ = new DatabaseProvider("products", [Product, ProductCategory, ProductPhoto, NutritionalValue, Carbohydrates, Fat, Vitamins, Minerals,]);
-    await databaseProvider_.initialize();
+    const databaseProvider_products = new DatabaseProvider("products", [Product, ProductCategory, ProductPhoto, NutritionalValue, Carbohydrates, Fat, Vitamins, Minerals,]);
+    const databaseProvider_authentication = new DatabaseProvider("authentication", [Agent]);
 
-    let productManager: ProductManager = new ProductManager(databaseProvider_);
+    await databaseProvider_products.initialize();
+    await databaseProvider_authentication.initialize();
 
-    let agentManager: AgentManager = new AgentManager(databaseProvider_);
+    let productManager: ProductManager = new ProductManager(databaseProvider_products);
+    let agentManager: AgentManager = new AgentManager(databaseProvider_authentication);
 
     await seedProducts(productManager);
 
@@ -43,8 +46,11 @@ let main = async () =>
         console.log("!apolloServer");
         await server_.stop();
 
-        console.log("!databaseProvider_");
-        await databaseProvider_.destroy();
+        console.log("!databaseProvider_products");
+        await databaseProvider_products.destroy();
+        console.log("!databaseProvider_authentication");
+        await databaseProvider_authentication.destroy();
+
     })
 };
 
