@@ -1,6 +1,6 @@
 import {DatabaseProvider} from "./database/database-provider";
 
-import {seedProducts} from "./database/database-model/features/product/seed/seed-product";
+import {seedProducts} from "./database/database-model/seed/seed-product";
 import {ProductManager} from "./database/database-model/features/product/manager/product-manager";
 import {Product, ProductCategory} from "./database/database-model/features/product/schemas/product-schema";
 import {
@@ -17,19 +17,24 @@ import {ProductResolver} from "./server/graphql/resolvers/product/product-resolv
 import {AuthenticationRouter} from "./server/authentication/routers/authentication/authentication";
 import {AgentManager} from "./database/database-model/features/agent/manager/agent-manager";
 import {Agent} from "./database/database-model/features/agent/schemas/agent-schema";
+import {seedAuthentication} from "./database/database-model/seed/data/seed-agent";
 
 let main = async () =>
 {
     const databaseProvider_products = new DatabaseProvider("products", [Product, ProductCategory, ProductPhoto, NutritionalValue, Carbohydrates, Fat, Vitamins, Minerals,]);
-    const databaseProvider_authentication = new DatabaseProvider("authentication", [Agent]);
-
     await databaseProvider_products.initialize();
-    await databaseProvider_authentication.initialize();
 
     let productManager: ProductManager = new ProductManager(databaseProvider_products);
-    let agentManager: AgentManager = new AgentManager(databaseProvider_authentication);
 
     await seedProducts(productManager);
+
+
+    const databaseProvider_authentication = new DatabaseProvider("authentication", [Agent]);
+    await databaseProvider_authentication.initialize();
+
+    let agentManager: AgentManager = new AgentManager(databaseProvider_authentication);
+
+    await seedAuthentication(agentManager);
 
     let server_ = new ApolloExpressServer([new ProductResolver(productManager)]);
 

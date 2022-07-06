@@ -1,5 +1,5 @@
-import {Product} from "../../schemas/product-schema";
-import {ProductPhoto} from "../../schemas/product-photo-schema";
+import {Product} from "../../features/product/schemas/product-schema";
+import {ProductPhoto} from "../../features/product/schemas/product-photo-schema";
 
 export const categories_data_array_: string[] =
     [

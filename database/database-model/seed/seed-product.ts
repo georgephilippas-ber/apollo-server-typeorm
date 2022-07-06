@@ -1,7 +1,7 @@
-import {ProductManager} from "../manager/product-manager";
+import {ProductManager} from "../features/product/manager/product-manager";
 import {categories_data_array_, photos_data_array_, products_data_array_} from "./data/product";
-import {Product, ProductCategory} from "../schemas/product-schema";
-import {ProductPhoto} from "../schemas/product-photo-schema";
+import {Product, ProductCategory} from "../features/product/schemas/product-schema";
+import {ProductPhoto} from "../features/product/schemas/product-photo-schema";
 
 async function createCategories(productManager_: ProductManager): Promise<ProductCategory[]>
 {
