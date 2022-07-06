@@ -1,4 +1,5 @@
 import {DataSource} from "typeorm";
+import * as path from "path";
 
 export class DatabaseProvider
 {
@@ -10,7 +11,7 @@ export class DatabaseProvider
     {
         this.dataSource = new DataSource({
             type: "sqlite",
-            database: ["SQLite", database_name_, ".db"].join(""),
+            database: path.join("SQLite", [database_name_, ".db"].join("")),
             synchronize: true,
             logging: false,
             logger: "simple-console",
