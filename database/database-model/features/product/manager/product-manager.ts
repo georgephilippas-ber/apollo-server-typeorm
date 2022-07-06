@@ -74,6 +74,11 @@ export class ProductManager
         })
     }
 
+    async productByCategoryName(category_name: string): Promise<Product[]>
+    {
+        return this.databaseProvider.getDataSource().getRepository(Product).createQueryBuilder("p").leftJoinAndSelect("p.categories", "pc").where("pc.category_name = :category_name", {category_name}).getMany();
+    }
+
     async all(): Promise<Product[]>
     {
         return this.databaseProvider.getDataSource().getRepository(Product).find({});
