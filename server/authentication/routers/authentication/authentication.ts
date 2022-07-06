@@ -17,7 +17,7 @@ import {Router} from "express";
 import {isolate, specifies, toInteger} from "../../../../core/utilities/utilities";
 import {authenticationConfiguration} from "../../../../configuration/authentication";
 
-export class AuthenticationRouter
+export class AuthenticationRoute
 {
     application_: Express;
     endpoint_: string;

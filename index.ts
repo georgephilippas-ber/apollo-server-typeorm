@@ -14,7 +14,7 @@ import {ProductPhoto} from "./database/database-model/features/product/schemas/p
 
 import {ApolloExpressServer} from "./server/server";
 import {ProductResolver} from "./server/graphql/resolvers/product/product-resolver";
-import {AuthenticationRouter} from "./server/authentication/routers/authentication/authentication";
+import {AuthenticationRoute} from "./server/authentication/routers/authentication/authentication";
 import {AgentManager} from "./database/database-model/features/agent/manager/agent-manager";
 import {Agent} from "./database/database-model/features/agent/schemas/agent-schema";
 import {seedAuthentication} from "./database/database-model/seed/data/seed-agent";
@@ -37,7 +37,7 @@ let main = async () =>
 
     let server_ = new ApolloExpressServer([new ProductResolver(productManager)]);
 
-    let authenticationRouter = new AuthenticationRouter(server_.express_application_, agentManager);
+    let authenticationRouter = new AuthenticationRoute(server_.express_application_, agentManager);
 
     authenticationRouter.register_router();
 
