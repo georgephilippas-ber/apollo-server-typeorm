@@ -28,7 +28,6 @@ let main = async () =>
 
     await seedProducts(productManager);
 
-
     const databaseProvider_authentication = new DatabaseProvider("authentication", [Agent]);
     await databaseProvider_authentication.initialize();
 

@@ -10,7 +10,7 @@ export class DatabaseProvider
     {
         this.dataSource = new DataSource({
             type: "sqlite",
-            database: [database_name_, ".db"].join(""),
+            database: ["SQLite", database_name_, ".db"].join(""),
             synchronize: true,
             logging: false,
             logger: "simple-console",
