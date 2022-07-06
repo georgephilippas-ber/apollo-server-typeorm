@@ -19,6 +19,7 @@ export class ProductResolver extends Resolver
         return {
             all: (parent: any, args: any, context: any, info: any) => this.productManager.all(),
             queryProductByProductName: (parent: any, args: any, context: any, info: any) => this.productManager.queryProductByProductName(args.partial_product_name_),
+            queryProductCategoryByCategoryName: (parent: any, args: any, context: any, info: any) => this.productManager.queryProductCategoryByCategoryName(args.partial_category_name_),
             allProductCategories: (parent: any, args: any, context: any, info: any) => this.productManager.allProductCategories()
         };
     }

@@ -2,6 +2,7 @@ type Query
 {
     all: [Product]
     allProductCategories: [ProductCategory]
+    queryProductCategoryByCategoryName(partial_category_name_: String): [ProductCategory]
     queryProductByProductName(partial_product_name_: String): [Product]
 }
 

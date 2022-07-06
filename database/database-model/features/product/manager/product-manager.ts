@@ -64,6 +64,16 @@ export class ProductManager
         });
     }
 
+    async queryProductCategoryByCategoryName(partial_category_name_: string): Promise<ProductCategory[]>
+    {
+        return this.databaseProvider.getDataSource().getRepository(ProductCategory).find({
+            where: {
+                category_name: ILike("%" + partial_category_name_ + "%")
+            }
+
+        })
+    }
+
     async all(): Promise<Product[]>
     {
         return this.databaseProvider.getDataSource().getRepository(Product).find({});
