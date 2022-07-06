@@ -55,7 +55,7 @@ export class ProductManager
         return this.databaseProvider.getDataSource().getRepository(Product).save(product);
     }
 
-    async queryByProductName(partial_product_name_: string): Promise<Product[]>
+    async queryProductByProductName(partial_product_name_: string): Promise<Product[]>
     {
         return this.databaseProvider.getDataSource().getRepository(Product).find({
             where: {
