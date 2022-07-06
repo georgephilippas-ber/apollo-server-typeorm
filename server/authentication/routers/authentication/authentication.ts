@@ -19,21 +19,19 @@ import {authenticationConfiguration} from "../../../../configuration/authenticat
 
 export class AuthenticationRouter
 {
-    expressApplication: Express;
+    application_: Express;
+    endpoint_: string;
+    router_: Router;
 
     agentManager: AgentManager;
 
-    authenticationRouter: Router;
-
-    router_endpoint_: string;
-
     constructor(expressApplication: Express, agentManager: AgentManager, router_endpoint_: string = "authentication")
     {
-        this.expressApplication = expressApplication;
+        this.application_ = expressApplication;
 
-        this.router_endpoint_ = router_endpoint_;
+        this.endpoint_ = router_endpoint_;
 
-        this.authenticationRouter = express.Router();
+        this.router_ = express.Router();
 
         this.register_routes();
 
@@ -42,7 +40,7 @@ export class AuthenticationRouter
 
     public register_router()
     {
-        this.expressApplication.use("/" + this.router_endpoint_, this.authenticationRouter);
+        this.application_.use("/" + this.endpoint_, this.router_);
     }
 
     register_routes()
@@ -55,7 +53,7 @@ export class AuthenticationRouter
 
     login()
     {
-        this.authenticationRouter.post("/login", async (req, res) =>
+        this.router_.post("/login", async (req, res) =>
         {
             let credentials_: string[];
 
@@ -64,8 +62,7 @@ export class AuthenticationRouter
                 res.status(StatusCodes.BAD_REQUEST).send({status: getReasonPhrase(StatusCodes.BAD_REQUEST)});
 
                 return;
-            }
-            else
+            } else
                 credentials_ = req.body["credentials"];
 
             let agent_: Agent | null = null;
@@ -88,8 +85,7 @@ export class AuthenticationRouter
                             email_: agent_.email_,
                             token: TokenFactory.createToken(agent_, true)
                         });
-                    }
-                    else
+                    } else
                         res.status(StatusCodes.UNAUTHORIZED).send({status: getReasonPhrase(StatusCodes.UNAUTHORIZED)});
                     break;
                 case 2:
@@ -105,8 +101,7 @@ export class AuthenticationRouter
                             email_: agent_.email_,
                             token: TokenFactory.createToken(agent_, true)
                         });
-                    }
-                    else
+                    } else
                         res.status(StatusCodes.UNAUTHORIZED).send({status: getReasonPhrase(StatusCodes.UNAUTHORIZED)});
                     break;
                 default:
@@ -117,7 +112,7 @@ export class AuthenticationRouter
 
     refresh()
     {
-        this.authenticationRouter.get("/refresh", async (req, res) =>
+        this.router_.get("/refresh", async (req, res) =>
         {
             let expiration_minutes_: number | undefined = toInteger(req.query["expiration_minutes"]) ?? authenticationConfiguration.token_expiration_minutes;
 
@@ -133,15 +128,14 @@ export class AuthenticationRouter
                 else
                     res.status(StatusCodes.UNAUTHORIZED).send({status: getReasonPhrase(StatusCodes.UNAUTHORIZED)});
 
-            }
-            else
+            } else
                 res.status(StatusCodes.BAD_REQUEST).send({status: getReasonPhrase(StatusCodes.BAD_REQUEST)});
         });
     }
 
     register()
     {
-        this.authenticationRouter.post("/register", async (req, res) =>
+        this.router_.post("/register", async (req, res) =>
         {
             if (specifies(req.body, ["given_name_", "surname_", "email_", "username_", "password_"]))
             {
@@ -160,15 +154,14 @@ export class AuthenticationRouter
                         res.status(StatusCodes.CONFLICT).send({error: getReasonPhrase(StatusCodes.CONFLICT)});
                 }
 
-            }
-            else
+            } else
                 res.status(StatusCodes.BAD_REQUEST).send({error: getReasonPhrase(StatusCodes.BAD_REQUEST)});
         })
     }
 
     protected_route()
     {
-        this.authenticationRouter.all("/protected", async (req, res) =>
+        this.router_.all("/protected", async (req, res) =>
         {
             let response_json_: any = {
                 request_headers: req.headers,
@@ -178,8 +171,7 @@ export class AuthenticationRouter
             if (!(req.headers[authenticationConfiguration.authenticationHeader] && typeof req.headers[authenticationConfiguration.authenticationHeader] === "string"))
             {
                 response_json_["error"] = authenticationConfiguration.authenticationHeader + " header error";
-            }
-            else
+            } else
             {
                 try
                 {
