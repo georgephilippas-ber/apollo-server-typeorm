@@ -22,7 +22,7 @@ let main = async () => {
     let agentManager = new agent_manager_1.AgentManager(databaseProvider_authentication);
     await (0, seed_agent_1.seedAuthentication)(agentManager);
     let server_ = new server_1.ApolloExpressServer([new product_resolver_1.ProductResolver(productManager)]);
-    let authenticationRouter = new authentication_1.AuthenticationRouter(server_.express_application_, agentManager);
+    let authenticationRouter = new authentication_1.AuthenticationRoute(server_.express_application_, agentManager);
     authenticationRouter.register_router();
     await server_.start();
     process.on("SIGINT", async (args) => {

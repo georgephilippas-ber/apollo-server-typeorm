@@ -1,4 +1,4 @@
-import express, {Express} from "express";
+import express, {Express, NextFunction} from "express";
 
 import * as jwt from 'jsonwebtoken';
 
@@ -32,6 +32,8 @@ export class AuthenticationRoute
         this.endpoint_ = router_endpoint_;
 
         this.router_ = express.Router();
+
+        this.router_.use(express.json());
 
         this.register_routes();
 
@@ -112,7 +114,7 @@ export class AuthenticationRoute
 
     refresh()
     {
-        this.router_.get("/refresh", async (req, res) =>
+        this.router_.all("/refresh", async (req, res) =>
         {
             let expiration_minutes_: number | undefined = toInteger(req.query["expiration_minutes"]) ?? authenticationConfiguration.token_expiration_minutes;
 

@@ -1,5 +1,5 @@
 ### passkey_
-POST http://localhost:4000/login
+POST http://localhost:4000/authentication/login
 Content-Type: application/json
 
 {
@@ -7,9 +7,37 @@ Content-Type: application/json
 }
 
 ### username_ password_
-POST http://localhost:4000/login
+POST http://localhost:4000/authentication/login
 Content-Type: application/json
 
 {
   "credentials": ["root", "root"]
+}
+
+###
+POST http://localhost:4000/authentication/refresh
+Authentication-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZ2VudF9pZF8iOjEsInJlZnJlc2hfIjp0cnVlLCJpYXQiOjE2NTcwNzM3MDUsImV4cCI6MTY1NzA3NTYyNX0.gE7PfYIFwrlRJVuAVzQWdVlN43wEEErBlhOzBiGajjI
+Content-Type: application/json
+
+{
+}
+
+###
+POST http://localhost:4000/authentication/protected
+Authentication-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZ2VudF9pZF8iOjEsInJlZnJlc2hfIjp0cnVlLCJpYXQiOjE2NTcwNzM3MDUsImV4cCI6MTY1NzA3NTYyNX0.gE7PfYIFwrlRJVuAVzQWdVlN43wEEErBlhOzBiGajjI
+Content-Type: application/json
+
+{
+}
+
+###
+POST http://localhost:4000/authentication/register
+Content-Type: application/json
+
+{
+  "given_name_": "",
+  "surname_": "",
+  "email_": "",
+  "username_": "",
+  "password_": ""
 }
