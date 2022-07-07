@@ -1,5 +1,6 @@
 import {unit, Unit} from "mathjs";
 
+//mass: 100 g, volume: 100 ml
 export function convert(product_quantity_type: "mass" | "volume", target_units_: string, target_quantity_: number, object_: object, recursive_: boolean = true): typeof object_
 {
     let record_units_: Unit = product_quantity_type === "mass" ? unit(100., "g") : unit(100., "ml");

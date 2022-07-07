@@ -21,19 +21,14 @@ import {seedAuthentication} from "./database/database-model/seed/seed-agent";
 
 let main = async () =>
 {
-    const databaseProvider_products = new DatabaseProvider("products", [Product, ProductCategory, ProductPhoto, NutritionalValue, Carbohydrates, Fat, Vitamins, Minerals,]);
-    await databaseProvider_products.initialize();
+    const databaseProvider_ = new DatabaseProvider("database", [Product, ProductCategory, ProductPhoto, NutritionalValue, Carbohydrates, Fat, Vitamins, Minerals,]);
+    await databaseProvider_.initialize();
 
-    let productManager: ProductManager = new ProductManager(databaseProvider_products);
-
-    await seedProducts(productManager);
-
-    const databaseProvider_authentication = new DatabaseProvider("authentication", [Agent]);
-    await databaseProvider_authentication.initialize();
-
-    let agentManager: AgentManager = new AgentManager(databaseProvider_authentication);
+    let agentManager: AgentManager = new AgentManager(databaseProvider_);
+    let productManager: ProductManager = new ProductManager(databaseProvider_);
 
     await seedAuthentication(agentManager);
+    await seedProducts(productManager);
 
     let server_ = new ApolloExpressServer([new ProductResolver(productManager)]);
 
@@ -50,10 +45,8 @@ let main = async () =>
         console.log("!apolloServer");
         await server_.stop();
 
-        console.log("!databaseProvider_products");
-        await databaseProvider_products.destroy();
-        console.log("!databaseProvider_authentication");
-        await databaseProvider_authentication.destroy();
+        console.log("!databaseProvider_");
+        await databaseProvider_.destroy();
     });
 };
 
