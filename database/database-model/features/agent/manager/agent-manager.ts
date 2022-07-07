@@ -1,9 +1,9 @@
 import {DatabaseProvider} from "../../../../database-provider";
 import {Agent, authentication_method_type_} from "../schemas/agent-schema";
 
-import {Encryption} from "../../../../../core/encryption/encryption";
+import {Encryption} from "../../../../../core/authentication/encryption/encryption";
 
-import {token_payload_type_, TokenFactory} from "../../../../../core/token/token";
+import {token_payload_type_, TokenFactory} from "../../../../../core/authentication/token/token";
 
 import {UpdateResult} from "typeorm";
 

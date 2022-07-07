@@ -1,9 +1,9 @@
-import {Agent} from "../../database/database-model/features/agent/schemas/agent-schema";
+import {Agent} from "../../../database/database-model/features/agent/schemas/agent-schema";
 
 import * as jwt from 'jsonwebtoken';
-import {isolate, specifies} from "../utilities/utilities";
+import {isolate, specifies} from "../../utilities/utilities";
 
-import {authenticationConfiguration} from "../../configuration/authentication";
+import {authenticationConfiguration} from "../../../configuration/authentication";
 
 export type token_payload_type_ =
     {

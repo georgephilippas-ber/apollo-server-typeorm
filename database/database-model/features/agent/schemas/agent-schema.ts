@@ -1,6 +1,6 @@
 import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 
-import {Encryption} from "../../../../../core/encryption/encryption";
+import {Encryption} from "../../../../../core/authentication/encryption/encryption";
 
 import {faker} from "@faker-js/faker";
 

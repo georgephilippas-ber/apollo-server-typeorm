@@ -10,7 +10,7 @@ import {AgentManager} from "../../../../database/database-model/features/agent/m
 
 import {StatusCodes, getReasonPhrase} from "http-status-codes";
 
-import {TokenFactory} from "../../../../core/token/token";
+import {TokenFactory} from "../../../../core/authentication/token/token";
 
 import {Router} from "express";
 

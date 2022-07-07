@@ -35,4 +35,5 @@ let main = async () => {
         await databaseProvider_authentication.destroy();
     });
 };
-main().then(value => null);
+//main().then(value => null);
+require("./core/units/units");
