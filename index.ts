@@ -57,6 +57,4 @@ let main = async () =>
     });
 };
 
-//main().then(value => null);
-
-import './core/units/units';
+main().then(value => null);

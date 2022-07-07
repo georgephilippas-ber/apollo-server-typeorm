@@ -1,6 +1,6 @@
 import {unit, Unit} from "mathjs";
 
-function convert(product_quantity_type: "mass" | "volume", target_units_: string, target_quantity_: number, object_: any, recursive_: boolean = true): typeof object_
+export function convert(product_quantity_type: "mass" | "volume", target_units_: string, target_quantity_: number, object_: object, recursive_: boolean = true): typeof object_
 {
     let record_units_: Unit = product_quantity_type === "mass" ? unit(100., "g") : unit(100., "ml");
 
@@ -23,7 +23,7 @@ function convert(product_quantity_type: "mass" | "volume", target_units_: string
     return converted_object_ as typeof object_;
 }
 
-function presentable(object_: any, units_: string, recursive_: boolean = false): typeof object_
+export function presentable(object_: object, units_: string, recursive_: boolean = false): typeof object_
 {
     let presentable_object_: any = {};
 
@@ -44,17 +44,3 @@ function presentable(object_: any, units_: string, recursive_: boolean = false):
 
     return presentable_object_;
 }
-
-let sample: any = {
-    riboflavin: 20,
-    f: "sfsdl",
-    g: {
-        l: "nothing",
-        p: 10
-    }
-}
-
-
-console.log(convert("mass", "mg", 200, sample, true));
-
-console.log(presentable(sample, "mg", false));
