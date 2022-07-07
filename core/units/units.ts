@@ -16,6 +16,8 @@ function convert(product_quantity_type: "mass" | "volume", target_unit_: string,
             converted_object_[property_ as keyof typeof converted_object_] = value_ / scale_ * target_quantity_;
         else if (typeof value_ === "object")
             converted_object_[property_ as keyof typeof converted_object_] = convert(product_quantity_type, target_unit_, target_quantity_, value_);
+        else
+            converted_object_[property_] = value_;
     }
 
     return converted_object_ as typeof object_;
