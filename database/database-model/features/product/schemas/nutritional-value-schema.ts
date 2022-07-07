@@ -62,6 +62,9 @@ export class Fat
 
     @Column({type: "float", nullable: true})
     trans?: number;
+
+    @Column({type: "float", nullable: true})
+    cholesterol?: number;
 }
 
 @Entity()
