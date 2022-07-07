@@ -1,7 +1,8 @@
-import {Column, Entity, JoinColumn, JoinTable, ManyToMany, OneToOne, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToOne, PrimaryGeneratedColumn} from "typeorm";
 
 import {NutritionalValue} from "./nutritional-value-schema";
 import {ProductPhoto} from "./product-photo-schema";
+import {Agent} from "../../agent/schemas/agent-schema";
 
 type product_type_type_ = "generic" | "commercial";
 
@@ -42,6 +43,10 @@ export class Product
     @ManyToMany(() => ProductCategory, {eager: true, cascade: true})
     @JoinTable()
     categories?: ProductCategory[];
+
+    @ManyToOne(() => Agent)
+    agent?: Agent
+    //TODO: agent
 }
 
 @Entity()
