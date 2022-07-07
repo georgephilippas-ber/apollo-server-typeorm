@@ -1,11 +1,7 @@
-import {string, unit, Unit} from "mathjs";
+import {unit, Unit} from "mathjs";
 import {Vitamins} from "../../database/database-model/features/product/schemas/nutritional-value-schema";
 
-let a: Unit = unit(2, "mg").to("kg");
-
-//console.log(a.to("mg").format({notation: "auto", precision: 2}));
-
-function convert(product_quantity_type: "mass" | "volume", target_quantity_: number, target_unit_: string, object_: any): typeof object_
+function convert(product_quantity_type: "mass" | "volume", target_unit_: string, target_quantity_: number, object_: any): typeof object_
 {
     let record_units_: Unit = product_quantity_type === "mass" ? unit(100., "g") : unit(100., "ml");
 
@@ -28,4 +24,5 @@ let sample: Vitamins = {
     riboflavin: 20
 }
 
-console.log(convert("volume", 1, "litre", sample));
+console.log(convert("mass", "g", 100, sample));
+
