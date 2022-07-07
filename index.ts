@@ -21,7 +21,7 @@ import {seedAuthentication} from "./database/database-model/seed/seed-agent";
 
 let main = async () =>
 {
-    const databaseProvider_ = new DatabaseProvider("database", [Product, ProductCategory, ProductPhoto, NutritionalValue, Carbohydrates, Fat, Vitamins, Minerals,]);
+    const databaseProvider_ = new DatabaseProvider("database", [Agent, Product, ProductCategory, ProductPhoto, NutritionalValue, Carbohydrates, Fat, Vitamins, Minerals,]);
     await databaseProvider_.initialize();
 
     let agentManager: AgentManager = new AgentManager(databaseProvider_);

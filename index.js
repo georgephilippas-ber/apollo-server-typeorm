@@ -13,14 +13,12 @@ const agent_manager_1 = require("./database/database-model/features/agent/manage
 const agent_schema_1 = require("./database/database-model/features/agent/schemas/agent-schema");
 const seed_agent_1 = require("./database/database-model/seed/seed-agent");
 let main = async () => {
-    const databaseProvider_products = new database_provider_1.DatabaseProvider("products", [product_schema_1.Product, product_schema_1.ProductCategory, product_photo_schema_1.ProductPhoto, nutritional_value_schema_1.NutritionalValue, nutritional_value_schema_1.Carbohydrates, nutritional_value_schema_1.Fat, nutritional_value_schema_1.Vitamins, nutritional_value_schema_1.Minerals,]);
-    await databaseProvider_products.initialize();
-    let productManager = new product_manager_1.ProductManager(databaseProvider_products);
-    await (0, seed_product_1.seedProducts)(productManager);
-    const databaseProvider_authentication = new database_provider_1.DatabaseProvider("authentication", [agent_schema_1.Agent]);
-    await databaseProvider_authentication.initialize();
-    let agentManager = new agent_manager_1.AgentManager(databaseProvider_authentication);
+    const databaseProvider_ = new database_provider_1.DatabaseProvider("database", [agent_schema_1.Agent, product_schema_1.Product, product_schema_1.ProductCategory, product_photo_schema_1.ProductPhoto, nutritional_value_schema_1.NutritionalValue, nutritional_value_schema_1.Carbohydrates, nutritional_value_schema_1.Fat, nutritional_value_schema_1.Vitamins, nutritional_value_schema_1.Minerals,]);
+    await databaseProvider_.initialize();
+    let agentManager = new agent_manager_1.AgentManager(databaseProvider_);
+    let productManager = new product_manager_1.ProductManager(databaseProvider_);
     await (0, seed_agent_1.seedAuthentication)(agentManager);
+    await (0, seed_product_1.seedProducts)(productManager);
     let server_ = new server_1.ApolloExpressServer([new product_resolver_1.ProductResolver(productManager)]);
     let authenticationRouter = new authentication_1.AuthenticationRoute(server_.express_application_, agentManager);
     authenticationRouter.register_router();
@@ -29,10 +27,8 @@ let main = async () => {
         console.log();
         console.log("!apolloServer");
         await server_.stop();
-        console.log("!databaseProvider_products");
-        await databaseProvider_products.destroy();
-        console.log("!databaseProvider_authentication");
-        await databaseProvider_authentication.destroy();
+        console.log("!databaseProvider_");
+        await databaseProvider_.destroy();
     });
 };
 main().then(value => null);
