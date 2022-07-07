@@ -5,6 +5,8 @@ import {ProductPhoto} from "./product-photo-schema";
 
 type product_type_type_ = "generic" | "commercial";
 
+type product_quantity_type_type_ = "mass" | "volume";
+
 @Entity()
 export class Product
 {
@@ -20,6 +22,9 @@ export class Product
     @Column({type: "text", nullable: false, unique: true, default: "commercial"})
     product_type?: product_type_type_;
 
+    @Column({type: "text", nullable: false, unique: true})
+    product_quantity_type?: product_quantity_type_type_;
+
     @ManyToMany(() => ProductPhoto, {eager: true, cascade: true})
     @JoinTable()
     photos?: ProductPhoto[];
@@ -31,6 +36,8 @@ export class Product
     @ManyToMany(() => ProductCategory, {eager: true, cascade: true})
     @JoinTable()
     categories?: ProductCategory[];
+
+
 }
 
 @Entity()

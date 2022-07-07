@@ -23,6 +23,7 @@ export const products_data_array_: { product: Product, categories: string[], pho
             {
                 name: "FITNESS Flakes",
                 warning: "Kann Milch, Erdnüsse und Nüsse enthalten.",
+                product_quantity_type: "mass",
                 nutritional_value:
                     {
                         carbohydrates:
@@ -59,6 +60,7 @@ export const products_data_array_: { product: Product, categories: string[], pho
             {
                 name: "banana",
                 product_type: "generic",
+                product_quantity_type: "mass",
                 nutritional_value:
                     {
                         energy: 89.,

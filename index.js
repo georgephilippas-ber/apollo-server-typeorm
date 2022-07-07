@@ -11,7 +11,7 @@ const product_resolver_1 = require("./server/graphql/resolvers/product/product-r
 const authentication_1 = require("./server/authentication/routers/authentication/authentication");
 const agent_manager_1 = require("./database/database-model/features/agent/manager/agent-manager");
 const agent_schema_1 = require("./database/database-model/features/agent/schemas/agent-schema");
-const seed_agent_1 = require("./database/database-model/seed/data/seed-agent");
+const seed_agent_1 = require("./database/database-model/seed/seed-agent");
 let main = async () => {
     const databaseProvider_products = new database_provider_1.DatabaseProvider("products", [product_schema_1.Product, product_schema_1.ProductCategory, product_photo_schema_1.ProductPhoto, nutritional_value_schema_1.NutritionalValue, nutritional_value_schema_1.Carbohydrates, nutritional_value_schema_1.Fat, nutritional_value_schema_1.Vitamins, nutritional_value_schema_1.Minerals,]);
     await databaseProvider_products.initialize();

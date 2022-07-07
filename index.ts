@@ -17,7 +17,7 @@ import {ProductResolver} from "./server/graphql/resolvers/product/product-resolv
 import {AuthenticationRoute} from "./server/authentication/routers/authentication/authentication";
 import {AgentManager} from "./database/database-model/features/agent/manager/agent-manager";
 import {Agent} from "./database/database-model/features/agent/schemas/agent-schema";
-import {seedAuthentication} from "./database/database-model/seed/data/seed-agent";
+import {seedAuthentication} from "./database/database-model/seed/seed-agent";
 
 let main = async () =>
 {
