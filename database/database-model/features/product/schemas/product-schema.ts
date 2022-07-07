@@ -22,8 +22,14 @@ export class Product
     @Column({type: "text", nullable: false, unique: true, default: "commercial"})
     product_type?: product_type_type_;
 
-    @Column({type: "text", nullable: false, unique: true})
+    @Column({type: "text", nullable: false})
     product_quantity_type?: product_quantity_type_type_;
+
+    @Column({type: "text", nullable: true})
+    package_quantities?: string; //e.g. "75g, 125g"
+
+    @Column({type: "text", nullable: false})
+    serving_quantities_?: string; //e.g. "30g"
 
     @ManyToMany(() => ProductPhoto, {eager: true, cascade: true})
     @JoinTable()
@@ -36,8 +42,6 @@ export class Product
     @ManyToMany(() => ProductCategory, {eager: true, cascade: true})
     @JoinTable()
     categories?: ProductCategory[];
-
-
 }
 
 @Entity()
