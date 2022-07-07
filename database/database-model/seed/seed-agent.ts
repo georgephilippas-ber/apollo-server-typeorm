@@ -10,4 +10,4 @@ export async function seedAuthentication(agentManager_: AgentManager)
         surname_: "root",
         given_name_: "root"
     }, "(username | email) & password | passkey");
-};
+}

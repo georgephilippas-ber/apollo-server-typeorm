@@ -59,39 +59,3 @@ export class Agent
         return agent_;
     }
 }
-
-export function fake_agent_array(quantity_: number, authentication_method_: authentication_method_type_): Agent[]
-{
-    return Array(quantity_).fill(0).map(value =>
-    {
-        let given_name_: string = faker.name.firstName(), surname_: string = faker.name.lastName();
-
-        let passkey_: string | undefined = undefined, passkey_hash_: string | undefined = undefined;
-        if (authentication_method_.includes("passkey"))
-        {
-            passkey_ = [faker.word.preposition(), faker.word.adjective(), faker.word.noun()].map(value => value.toLowerCase()).join("-");
-
-            passkey_hash_ = Encryption.hash_passkey(passkey_);
-        }
-
-        let username_: string | undefined = authentication_method_.includes("username") ? faker.internet.userName(given_name_, surname_).toLowerCase() : undefined;
-
-        let email_: string | undefined = authentication_method_.includes("email") ? faker.internet.email(given_name_, surname_).toLowerCase() : undefined;
-
-        let password_: string | undefined = undefined, password_hash_: string | undefined = undefined;
-        if (authentication_method_.includes("password"))
-        {
-            password_ = faker.internet.password(0x10);
-
-            password_hash_ = Encryption.hash_password(password_);
-        }
-
-        console.log(given_name_, surname_);
-        console.log("passkey_", passkey_);
-        console.log("username_", username_);
-        console.log("email_", email_);
-        console.log("password_", password_);
-
-        return Agent.byValues(given_name_, surname_, passkey_hash_, username_, email_, password_hash_, authentication_method_);
-    })
-}
