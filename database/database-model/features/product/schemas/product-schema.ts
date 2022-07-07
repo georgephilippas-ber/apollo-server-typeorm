@@ -1,4 +1,4 @@
-import {Column, Entity, JoinColumn, JoinTable, ManyToMany, OneToMany, OneToOne, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, JoinColumn, JoinTable, ManyToMany, OneToOne, PrimaryGeneratedColumn} from "typeorm";
 
 import {NutritionalValue} from "./nutritional-value-schema";
 import {ProductPhoto} from "./product-photo-schema";
