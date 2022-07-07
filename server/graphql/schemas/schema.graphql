@@ -1,6 +1,7 @@
 type Query
 {
     all: [Product]
+    random: Product
     queryProductByName(partial_product_name_: String): [Product]
     productByCategoryName(category_name: String): [Product]
 

@@ -64,6 +64,16 @@ export class ProductManager
         });
     }
 
+    async random(): Promise<Product | null>
+    {
+        let randomProduct_: Product | null = await this.databaseProvider.getDataSource().createQueryBuilder(Product, "product").select("product.*").orderBy("RANDOM()").limit(1).getOne();
+
+        if (randomProduct_)
+            return this.databaseProvider.getDataSource().getRepository(Product).findOne({where: {id: randomProduct_?.id}});
+        else
+            return null;
+    }
+
     async queryProductCategoryByCategoryName(partial_category_name_: string): Promise<ProductCategory[]>
     {
         return this.databaseProvider.getDataSource().getRepository(ProductCategory).find({
