@@ -1,5 +1,4 @@
 import {unit, Unit} from "mathjs";
-import {Vitamins} from "../../database/database-model/features/product/schemas/nutritional-value-schema";
 
 function convert(product_quantity_type: "mass" | "volume", target_unit_: string, target_quantity_: number, object_: any): typeof object_
 {
@@ -15,14 +14,15 @@ function convert(product_quantity_type: "mass" | "volume", target_unit_: string,
 
         if (typeof value_ === "number")
             converted_object_[property_ as keyof typeof converted_object_] = value_ / scale_ * target_quantity_;
+        else if (typeof value_ === "object")
+            converted_object_[property_ as keyof typeof converted_object_] = convert(product_quantity_type, target_unit_, target_quantity_, value_);
     }
 
     return converted_object_ as typeof object_;
 }
 
-let sample: Vitamins = {
+let sample: any = {
     riboflavin: 20
 }
 
-console.log(convert("mass", "g", 100, sample));
-
+console.log(convert("mass", "g", 200, sample));
