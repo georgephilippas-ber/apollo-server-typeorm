@@ -29,7 +29,7 @@ export class Product
     package_quantities?: string; //e.g. "75g, 125g"
 
     @Column({type: "text", nullable: false})
-    serving_quantities_?: string; //e.g. "30g"
+    serving_quantities?: string; //e.g. "30g"
 
     @ManyToMany(() => ProductPhoto, {eager: true, cascade: true})
     @JoinTable()

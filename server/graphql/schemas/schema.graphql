@@ -8,6 +8,21 @@ type Query
     queryCategoryByName(partial_category_name_: String): [ProductCategory]
 }
 
+type Product
+{
+    id: ID!
+
+    name: String
+    warning: String
+    product_type: String
+    product_quantity_type: String
+    package_quantities: String
+    serving_quantities: String
+    photos: [ProductPhoto]
+    categories: [ProductCategory]
+    nutritional_value: NutritionalValue
+}
+
 type ProductPhoto
 {
     id: ID!
@@ -34,18 +49,6 @@ type NutritionalValue
     fat: Fat
     vitamins: Vitamins
     minerals: Minerals
-}
-
-type Product
-{
-    id: ID!
-
-    name: String
-    warning: String
-    product_type: String
-    photos: [ProductPhoto]
-    categories: [ProductCategory]
-    nutritional_value: NutritionalValue
 }
 
 type Carbohydrates
