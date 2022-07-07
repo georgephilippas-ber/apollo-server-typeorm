@@ -20,7 +20,7 @@ export class ProductResolver extends Resolver
             queryProductByName: (parent: any, args: any, context: any, info: any) => this.productManager.queryProductByProductName(args.partial_product_name_),
             productByCategoryName: (parent: any, args: any, context: any, info: any) => this.productManager.productByCategoryName(args.category_name),
             allCategories: (parent: any, args: any, context: any, info: any) => this.productManager.allProductCategories(),
-            queryCategoryByName: (parent: any, args: any, context: any, info: any) => this.productManager.queryProductCategoryByCategoryName(args.partial_category_name_),
+            queryCategoryByName: (parent: any, args: any, context: any, info: any) => this.productManager.queryCategoryByName(args.partial_category_name_),
         };
     }
 }
