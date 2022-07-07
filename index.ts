@@ -54,8 +54,7 @@ let main = async () =>
         await databaseProvider_products.destroy();
         console.log("!databaseProvider_authentication");
         await databaseProvider_authentication.destroy();
-
-    })
+    });
 };
 
 //main().then(value => null);
