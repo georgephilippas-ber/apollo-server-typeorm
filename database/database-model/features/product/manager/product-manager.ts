@@ -2,14 +2,31 @@ import {DatabaseProvider} from "../../../../database-provider";
 import {Product, ProductCategory} from "../schemas/product-schema";
 import {ProductPhoto} from "../schemas/product-photo-schema";
 import {ILike, In} from "typeorm";
+import {AgentManager} from "../../agent/manager/agent-manager";
 
 export class ProductManager
 {
     databaseProvider: DatabaseProvider;
 
-    constructor(databaseProvider: DatabaseProvider)
+    agentManager?: AgentManager
+
+    constructor(databaseProvider: DatabaseProvider, agentManager_?: AgentManager)
     {
         this.databaseProvider = databaseProvider;
+
+        this.agentManager = agentManager_;
+    }
+
+    getAgentManager(): AgentManager
+    {
+        if (this.agentManager)
+            return this.agentManager
+        else throw new Error("!AgentManager");
+    }
+
+    setAgentManager(agentManager: AgentManager)
+    {
+        this.agentManager = agentManager;
     }
 
     async allProductCategories(): Promise<ProductCategory[]>

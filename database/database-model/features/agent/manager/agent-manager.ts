@@ -65,8 +65,7 @@ export class AgentManager
             let agent_: Agent = query_result_[0];
 
             return agent_.authentication_method_.includes("passkey") && agent_.active_ ? agent_ : null;
-        }
-        else
+        } else
             return null;
     }
 
