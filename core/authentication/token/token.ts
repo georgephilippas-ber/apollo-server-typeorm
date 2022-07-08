@@ -15,6 +15,9 @@ export class TokenFactory
 {
     public static createToken(agent_: Agent, refresh_: boolean, expiration_minutes_: number = authenticationConfiguration.token_expiration_minutes): string
     {
+        if (!agent_.agent_id_)
+            throw new Error("!agent_id_");
+
         if (!specifies(agent_, ["agent_id_"]))
             throw new Error("invalid agent_id_");
 
