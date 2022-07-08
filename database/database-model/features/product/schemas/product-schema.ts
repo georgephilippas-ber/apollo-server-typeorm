@@ -44,9 +44,8 @@ export class Product
     @JoinTable()
     categories?: ProductCategory[];
 
-    @ManyToOne(() => Agent)
+    @ManyToOne(() => Agent, {eager: true, cascade: true})
     agent?: Agent
-    //TODO: agent
 }
 
 @Entity()

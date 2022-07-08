@@ -22,6 +22,16 @@ type Product
     photos: [ProductPhoto]
     categories: [ProductCategory]
     nutritional_value: NutritionalValue
+    agent: Agent
+}
+
+type Agent
+{
+    id: ID!
+    given_name_: String
+    surname_: String
+    username_: String
+    email_: String
 }
 
 type ProductPhoto

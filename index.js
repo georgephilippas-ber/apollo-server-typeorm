@@ -16,7 +16,7 @@ let main = async () => {
     const databaseProvider_ = new database_provider_1.DatabaseProvider("database", [agent_schema_1.Agent, product_schema_1.Product, product_schema_1.ProductCategory, product_photo_schema_1.ProductPhoto, nutritional_value_schema_1.NutritionalValue, nutritional_value_schema_1.Carbohydrates, nutritional_value_schema_1.Fat, nutritional_value_schema_1.Vitamins, nutritional_value_schema_1.Minerals,]);
     await databaseProvider_.initialize();
     let agentManager = new agent_manager_1.AgentManager(databaseProvider_);
-    let productManager = new product_manager_1.ProductManager(databaseProvider_);
+    let productManager = new product_manager_1.ProductManager(databaseProvider_, agentManager);
     await (0, seed_agent_1.seedAuthentication)(agentManager);
     await (0, seed_product_1.seedProducts)(productManager);
     let server_ = new server_1.ApolloExpressServer([new product_resolver_1.ProductResolver(productManager)]);

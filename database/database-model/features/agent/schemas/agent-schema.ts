@@ -1,8 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
-
-import {Encryption} from "../../../../../core/authentication/encryption/encryption";
-
-import {faker} from "@faker-js/faker";
+import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 
 export type authentication_method_type_ =
     | "username & password"
@@ -17,7 +13,7 @@ export type authentication_method_type_ =
 export class Agent
 {
     @PrimaryGeneratedColumn()
-    agent_id_!: number;
+    agent_id_?: number;
 
     @Column({type: "integer", nullable: false})
     active_!: boolean;
@@ -42,20 +38,4 @@ export class Agent
 
     @Column({type: "varchar", nullable: false})
     authentication_method_!: authentication_method_type_;
-
-    public static byValues(given_name_?: string, surname_?: string, passkey_hash_?: string, username_?: string, email_?: string, password_hash_?: string, authentication_method_: authentication_method_type_ = "passkey", active_: boolean = true): Agent
-    {
-        let agent_ = new Agent();
-
-        agent_.given_name_ = given_name_;
-        agent_.surname_ = surname_;
-        agent_.passkey_hash_ = passkey_hash_;
-        agent_.username_ = username_;
-        agent_.email_ = email_;
-        agent_.password_hash_ = password_hash_;
-        agent_.authentication_method_ = authentication_method_;
-        agent_.active_ = active_;
-
-        return agent_;
-    }
 }

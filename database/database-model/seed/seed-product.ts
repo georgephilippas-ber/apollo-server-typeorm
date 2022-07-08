@@ -1,5 +1,5 @@
 import {ProductManager} from "../features/product/manager/product-manager";
-import {categories_data_array_, photos_data_array_, products_data_array_} from "./data/product";
+import {categories_data_array_, photos_data_array_, products_data_array_} from "./data/product-seed-data";
 import {Product, ProductCategory} from "../features/product/schemas/product-schema";
 import {ProductPhoto} from "../features/product/schemas/product-photo-schema";
 
@@ -15,7 +15,7 @@ async function createPhotos(product_Manager_: ProductManager): Promise<ProductPh
 
 async function createProducts(productManager_: ProductManager): Promise<Product[]>
 {
-    return Promise.all(products_data_array_.map(value => productManager_.createProduct(value.product, value.categories, value.photo_identifiers)));
+    return Promise.all(products_data_array_.map(value => productManager_.createProduct(value.product, value.categories, value.photo_identifiers, value.agent_username)));
 }
 
 export async function seedProducts(productManager_: ProductManager): Promise<void>

@@ -3,6 +3,7 @@ import {Product, ProductCategory} from "../schemas/product-schema";
 import {ProductPhoto} from "../schemas/product-photo-schema";
 import {ILike, In} from "typeorm";
 import {AgentManager} from "../../agent/manager/agent-manager";
+import {Agent} from "../../agent/schemas/agent-schema";
 
 export class ProductManager
 {
@@ -64,10 +65,18 @@ export class ProductManager
             return product_photo_;
     }
 
-    async createProduct(product: Product, categories_: string[], photo_identifiers_: string[]): Promise<Product>
+    async createProduct(product: Product, categories_: string[], photo_identifiers_: string[], agent_username_?: string): Promise<Product>
     {
         product.categories = await Promise.all(categories_.map(value => this.categoryByName(value)));
         product.photos = await Promise.all(photo_identifiers_.map(value => this.photoByIdentifier(value)));
+
+        if (agent_username_)
+        {
+            let query_result_: Agent[] = await this.getAgentManager().byUsername(agent_username_);
+
+            if (query_result_.length > 0)
+                product.agent = query_result_[0];
+        }
 
         return this.databaseProvider.getDataSource().getRepository(Product).save(product);
     }

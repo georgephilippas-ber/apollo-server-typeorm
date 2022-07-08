@@ -43,12 +43,25 @@ export class AgentManager
 
     async byPasskey(passkey_: string): Promise<Agent[]>
     {
-        return this.databaseProvider_.getDataSource().getRepository(Agent).createQueryBuilder("agent").where("agent.passkey_hash_ = :passkey_hash_", {passkey_hash_: Encryption.hash_passkey(passkey_)}).getMany()
+        //return this.databaseProvider_.getDataSource().getRepository(Agent).createQueryBuilder("agent").where("agent.passkey_hash_ = :passkey_hash_", {passkey_hash_: Encryption.hash_passkey(passkey_)}).getMany()
+
+        return this.databaseProvider_.getDataSource().getRepository(Agent).find({
+            where: {
+                passkey_hash_: Encryption.hash_passkey(passkey_)
+            }
+        });
+
     }
 
     async byUsername(username_: string): Promise<Agent[]>
     {
-        return this.databaseProvider_.getDataSource().getRepository(Agent).createQueryBuilder("agent").where("agent.username_ = :username_", {username_: username_}).getMany();
+        // return this.databaseProvider_.getDataSource().getRepository(Agent).createQueryBuilder("agent").where("agent.username_ = :username_", {username_: username_}).getMany();
+
+        return this.databaseProvider_.getDataSource().getRepository(Agent).find({
+            where: {
+                username_: username_
+            }
+        });
     }
 
     async byEmail(email_: string): Promise<Agent[]>
@@ -110,12 +123,19 @@ export class AgentManager
             (await this.byEmail(candidate_agent_.email_)).length > 0)
             return null;
         else
-            return this.databaseProvider_.getDataSource().getRepository(Agent).save(Agent.byValues(
-                candidate_agent_.given_name_,
-                candidate_agent_.surname_, candidate_agent_.passkey_ ? Encryption.hash_passkey(candidate_agent_.passkey_) : undefined,
-                candidate_agent_.username_,
-                candidate_agent_.email_,
-                Encryption.hash_password(candidate_agent_.password_), authentication_method_
-            ));
+        {
+            let agent_: Agent = {
+                username_: candidate_agent_.username_,
+                email_: candidate_agent_.email_,
+                given_name_: candidate_agent_.given_name_,
+                surname_: candidate_agent_.surname_,
+                password_hash_: candidate_agent_.password_ ? Encryption.hash_password(candidate_agent_.password_) : undefined,
+                passkey_hash_: candidate_agent_.passkey_ ? Encryption.hash_passkey(candidate_agent_.passkey_) : undefined,
+                authentication_method_: authentication_method_,
+                active_: true
+            }
+
+            return this.databaseProvider_.getDataSource().getRepository(Agent).save(agent_);
+        }
     }
 }

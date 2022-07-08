@@ -17,7 +17,7 @@ export const photos_data_array_: ProductPhoto[] = [
     }
 ];
 
-export const products_data_array_: { product: Product, categories: string[], photo_identifiers: string[] }[] = [
+export const products_data_array_: { product: Product, categories: string[], photo_identifiers: string[], agent_username: string }[] = [
     {
         product:
             {
@@ -55,7 +55,8 @@ export const products_data_array_: { product: Product, categories: string[], pho
                     }
             },
         categories: ["cereal"],
-        photo_identifiers: ["FITNESS Flakes"]
+        photo_identifiers: ["FITNESS Flakes"],
+        agent_username: "root"
     },
     {
         product:
@@ -95,6 +96,7 @@ export const products_data_array_: { product: Product, categories: string[], pho
                     }
             },
         categories: ["fruit"],
-        photo_identifiers: ["banana"]
+        photo_identifiers: ["banana"],
+        agent_username: "root"
     }
 ];

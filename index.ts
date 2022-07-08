@@ -25,7 +25,7 @@ let main = async () =>
     await databaseProvider_.initialize();
 
     let agentManager: AgentManager = new AgentManager(databaseProvider_);
-    let productManager: ProductManager = new ProductManager(databaseProvider_);
+    let productManager: ProductManager = new ProductManager(databaseProvider_, agentManager);
 
     await seedAuthentication(agentManager);
     await seedProducts(productManager);
