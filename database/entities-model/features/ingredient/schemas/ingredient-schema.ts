@@ -1,4 +1,4 @@
-import {Tree, Entity, PrimaryGeneratedColumn, OneToOne, JoinColumn, Column, ManyToOne} from "typeorm";
+import {Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn} from "typeorm";
 import {Product} from "../../product/schemas/product-schema";
 import {Agent} from "../../agent/schemas/agent-schema";
 
@@ -8,23 +8,18 @@ export class Ingredient
     @PrimaryGeneratedColumn()
     id?: number;
 
-    @OneToOne(() => Product, {eager: true, cascade: true})
-    @JoinColumn()
-    product?: Product; //product contained as ingredient
-
-    @OneToOne(() => Agent, {eager: true, cascade: true})
-    @JoinColumn()
-    agent?: Agent;
+    @OneToOne(type => Product)
+    product!: Product; //the contained as ingredient
 
     @Column({type: "int", nullable: true})
-    servings_selector?: number;
+    serving_index?: number;
 
     @Column({type: "int", nullable: true})
-    servings_quantity?: number;
+    serving_quantity?: number;
 
     @Column({type: "text", nullable: true})
     quantity?: string;
 
     @ManyToOne(() => Product, object => object.ingredients)
-    product_foreign_?: Product //the product this ingredient belongs to
+    product_relation_counterpart?: Product //the product this ingredient belongs to
 }

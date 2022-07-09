@@ -123,6 +123,11 @@ export class ProductManager
         });
     }
 
+    async productByName(name: string): Promise<Product | null>
+    {
+        return this.databaseProvider.getDataSource().getRepository(Product).findOne({where: {name}});
+    }
+
     async all(): Promise<Product[]>
     {
         return this.databaseProvider.getDataSource().getRepository(Product).find({});

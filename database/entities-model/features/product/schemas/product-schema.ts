@@ -58,7 +58,7 @@ export class Product
     @ManyToOne(() => Agent, {eager: true, cascade: true})
     agent?: Agent
 
-    @OneToMany(() => Ingredient, object => object.product_foreign_)
+    @OneToMany(() => Ingredient, object => object.product_relation_counterpart, {cascade: true, eager: true})
     ingredients?: Ingredient[]
 }
 
