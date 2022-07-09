@@ -123,9 +123,18 @@ export class ProductManager
         });
     }
 
+    async productByNameLazy(name: string): Promise<Product | null>
+    {
+        return this.databaseProvider.getDataSource().getRepository(Product).findOne({
+            where: {name},
+        });
+    }
+
     async productByName(name: string): Promise<Product | null>
     {
-        return this.databaseProvider.getDataSource().getRepository(Product).findOne({where: {name}});
+        return this.databaseProvider.getDataSource().getRepository(Product).findOne({
+            where: {name}, relations: ["ingredients"]
+        });
     }
 
     async all(): Promise<Product[]>

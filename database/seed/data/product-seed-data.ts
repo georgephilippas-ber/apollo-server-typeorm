@@ -1,5 +1,5 @@
-import {Product} from "../../features/product/schemas/product-schema";
-import {ProductPhoto} from "../../features/product/schemas/product-photo-schema";
+import {Product} from "../../entities-model/features/product/schemas/product-schema";
+import {ProductPhoto} from "../../entities-model/features/product/schemas/product-photo-schema";
 
 export const categories_data_array_: string[] =
     [
@@ -62,6 +62,89 @@ export const products_data_array_: { product: Product, categories: string[], pho
         product:
             {
                 name: "banana",
+                product_type: "generic",
+                product_quantity_type: "mass",
+                serving_quantities: "81g, 101g, 118g, 136g",
+                nutritional_value:
+                    {
+                        energy: 89.,
+                        protein: 1.1,
+                        carbohydrates:
+                            {
+                                carbohydrates_total: 22.8,
+                                sugar: 12.2,
+                                fibre: 2.6
+                            },
+                        fat:
+                            {
+                                fat_total: 0.3
+                            },
+                        vitamins:
+                            {
+                                retinol: 0.0192,
+                                ascorbicAcid: 8.7,
+                                niacin: 0.7,
+                                folicAcid: 0.02,
+                                pyridoxine: 0.4,
+                            },
+                        minerals:
+                            {
+                                calcium: 5,
+                                potassium: 358,
+                                iron: 0.3
+                            }
+                    }
+            },
+        categories: ["fruit"],
+        photo_identifiers: ["banana"],
+        agent_username: "root"
+    },
+    {
+        product:
+            {
+                name: "tomato",
+                product_type: "generic",
+                product_quantity_type: "mass",
+                serving_quantities: "81g, 101g, 118g, 136g",
+                nutritional_value:
+                    {
+                        energy: 89.,
+                        protein: 1.1,
+                        carbohydrates:
+                            {
+                                carbohydrates_total: 22.8,
+                                sugar: 12.2,
+                                fibre: 2.6
+                            },
+                        fat:
+                            {
+                                fat_total: 0.3
+                            },
+                        vitamins:
+                            {
+                                retinol: 0.0192,
+                                ascorbicAcid: 8.7,
+                                niacin: 0.7,
+                                folicAcid: 0.02,
+                                pyridoxine: 0.4,
+                            },
+                        minerals:
+                            {
+                                calcium: 5,
+                                potassium: 358,
+                                iron: 0.3
+                            }
+                    }
+            },
+        categories: ["fruit"],
+        photo_identifiers: ["banana"],
+        agent_username: "root"
+    },
+    {
+
+        product:
+            {
+                name: "potato",
                 product_type: "generic",
                 product_quantity_type: "mass",
                 serving_quantities: "81g, 101g, 118g, 136g",

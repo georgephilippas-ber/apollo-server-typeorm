@@ -25,6 +25,8 @@ type Product
     categories: [ProductCategory]
     nutritional_value: NutritionalValue
     agent: Agent
+
+    ingredients: [Ingredient]
 }
 
 type Agent
@@ -109,4 +111,14 @@ type Minerals
     calcium: Float
     iron: Float
     potassium: Float
+}
+
+type Ingredient
+{
+    id: ID
+    product: Product
+
+    serving_index: Int
+    serving_quantity: Float
+    quantity: String
 }

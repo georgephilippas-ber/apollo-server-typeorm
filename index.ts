@@ -1,6 +1,5 @@
 import {DatabaseProvider} from "./database/database-provider";
 
-import {seedProducts} from "./database/entities-model/seed/seed-product";
 import {ProductManager} from "./database/entities-model/features/product/manager/product-manager";
 import {Product, ProductCategory} from "./database/entities-model/features/product/schemas/product-schema";
 import {
@@ -17,11 +16,12 @@ import {ProductResolver} from "./server/graphql/resolvers/product/product-resolv
 import {AuthenticationRoute} from "./server/authentication/routers/authentication/authentication";
 import {AgentManager} from "./database/entities-model/features/agent/manager/agent-manager";
 import {Agent} from "./database/entities-model/features/agent/schemas/agent-schema";
-import {seedAuthentication} from "./database/entities-model/seed/seed-agent";
+import {seedAuthentication} from "./database/seed/seed-agent";
+import {seedProducts} from "./database/seed/seed-product";
 
 let main = async () =>
 {
-    const databaseProvider_ = new DatabaseProvider("database", [Agent, Product, ProductCategory, ProductPhoto, NutritionalValue, Carbohydrates, Fat, Vitamins, Minerals,]);
+    const databaseProvider_ = new DatabaseProvider("database", [Agent, Product, ProductCategory, ProductPhoto, NutritionalValue, Carbohydrates, Fat, Vitamins, Minerals]);
     await databaseProvider_.initialize();
 
     let agentManager: AgentManager = new AgentManager(databaseProvider_);

@@ -13,7 +13,6 @@ import {
 import {NutritionalValue} from "./nutritional-value-schema";
 import {ProductPhoto} from "./product-photo-schema";
 import {Agent} from "../../agent/schemas/agent-schema";
-import {Ingredient} from "../../ingredient/schemas/ingredient-schema";
 
 type product_type_type_ = "generic" | "commercial";
 
@@ -31,7 +30,7 @@ export class Product
     @Column({type: "text", nullable: true})
     warning?: string;
 
-    @Column({type: "text", nullable: false, unique: true, default: "commercial"})
+    @Column({type: "text", nullable: false, unique: false, default: "commercial"})
     product_type?: product_type_type_;
 
     @Column({type: "text", nullable: false})
@@ -57,9 +56,6 @@ export class Product
 
     @ManyToOne(() => Agent, {eager: true, cascade: true})
     agent?: Agent
-
-    @OneToMany(() => Ingredient, object => object.product_relation_counterpart, {cascade: true, eager: true})
-    ingredients?: Ingredient[]
 }
 
 @Entity()

@@ -13,7 +13,7 @@ export class DatabaseProvider
             type: "sqlite",
             database: path.join("SQLite", [database_name_, ".db"].join("")),
             synchronize: true,
-            logging: true,
+            logging: false,
             logger: "simple-console",
             entities: entities_array_,
             dropSchema: true

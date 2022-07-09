@@ -1,4 +1,4 @@
-import {AgentManager} from "../features/agent/manager/agent-manager";
+import {AgentManager} from "../entities-model/features/agent/manager/agent-manager";
 
 export async function seedAuthentication(agentManager_: AgentManager)
 {
