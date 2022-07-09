@@ -1,8 +1,19 @@
-import {Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToOne, PrimaryGeneratedColumn} from "typeorm";
+import {
+    Column,
+    Entity,
+    JoinColumn,
+    JoinTable,
+    ManyToMany,
+    ManyToOne,
+    OneToMany,
+    OneToOne,
+    PrimaryGeneratedColumn
+} from "typeorm";
 
 import {NutritionalValue} from "./nutritional-value-schema";
 import {ProductPhoto} from "./product-photo-schema";
 import {Agent} from "../../agent/schemas/agent-schema";
+import {Ingredient} from "../../ingredient/schemas/ingredient-schema";
 
 type product_type_type_ = "generic" | "commercial";
 
@@ -24,13 +35,13 @@ export class Product
     product_type?: product_type_type_;
 
     @Column({type: "text", nullable: false})
-    product_quantity_type?: product_quantity_type_type_;
+    product_quantity_type!: product_quantity_type_type_;
 
     @Column({type: "text", nullable: true})
     package_quantities?: string; //e.g. "75g, 125g"
 
     @Column({type: "text", nullable: false})
-    serving_quantities?: string; //e.g. "30g"
+    serving_quantities!: string; //e.g. "30g"
 
     @ManyToMany(() => ProductPhoto, {eager: true, cascade: true})
     @JoinTable()
@@ -46,6 +57,9 @@ export class Product
 
     @ManyToOne(() => Agent, {eager: true, cascade: true})
     agent?: Agent
+
+    @OneToMany(() => Ingredient, object => object.product_foreign_)
+    ingredients?: Ingredient[]
 }
 
 @Entity()

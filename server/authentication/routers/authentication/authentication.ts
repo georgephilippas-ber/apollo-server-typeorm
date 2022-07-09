@@ -5,8 +5,8 @@ import * as jwt from 'jsonwebtoken';
 import {
     Agent,
     authentication_method_type_
-} from "../../../../database/database-model/features/agent/schemas/agent-schema";
-import {AgentManager} from "../../../../database/database-model/features/agent/manager/agent-manager";
+} from "../../../../database/entities-model/features/agent/schemas/agent-schema";
+import {AgentManager} from "../../../../database/entities-model/features/agent/manager/agent-manager";
 
 import {StatusCodes, getReasonPhrase} from "http-status-codes";
 

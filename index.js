@@ -1,17 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_provider_1 = require("./database/database-provider");
-const seed_product_1 = require("./database/database-model/seed/seed-product");
-const product_manager_1 = require("./database/database-model/features/product/manager/product-manager");
-const product_schema_1 = require("./database/database-model/features/product/schemas/product-schema");
-const nutritional_value_schema_1 = require("./database/database-model/features/product/schemas/nutritional-value-schema");
-const product_photo_schema_1 = require("./database/database-model/features/product/schemas/product-photo-schema");
+const seed_product_1 = require("./database/entities-model/seed/seed-product");
+const product_manager_1 = require("./database/entities-model/features/product/manager/product-manager");
+const product_schema_1 = require("./database/entities-model/features/product/schemas/product-schema");
+const nutritional_value_schema_1 = require("./database/entities-model/features/product/schemas/nutritional-value-schema");
+const product_photo_schema_1 = require("./database/entities-model/features/product/schemas/product-photo-schema");
 const server_1 = require("./server/server");
 const product_resolver_1 = require("./server/graphql/resolvers/product/product-resolver");
 const authentication_1 = require("./server/authentication/routers/authentication/authentication");
-const agent_manager_1 = require("./database/database-model/features/agent/manager/agent-manager");
-const agent_schema_1 = require("./database/database-model/features/agent/schemas/agent-schema");
-const seed_agent_1 = require("./database/database-model/seed/seed-agent");
+const agent_manager_1 = require("./database/entities-model/features/agent/manager/agent-manager");
+const agent_schema_1 = require("./database/entities-model/features/agent/schemas/agent-schema");
+const seed_agent_1 = require("./database/entities-model/seed/seed-agent");
 let main = async () => {
     const databaseProvider_ = new database_provider_1.DatabaseProvider("database", [agent_schema_1.Agent, product_schema_1.Product, product_schema_1.ProductCategory, product_photo_schema_1.ProductPhoto, nutritional_value_schema_1.NutritionalValue, nutritional_value_schema_1.Carbohydrates, nutritional_value_schema_1.Fat, nutritional_value_schema_1.Vitamins, nutritional_value_schema_1.Minerals,]);
     await databaseProvider_.initialize();

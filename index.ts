@@ -1,23 +1,23 @@
 import {DatabaseProvider} from "./database/database-provider";
 
-import {seedProducts} from "./database/database-model/seed/seed-product";
-import {ProductManager} from "./database/database-model/features/product/manager/product-manager";
-import {Product, ProductCategory} from "./database/database-model/features/product/schemas/product-schema";
+import {seedProducts} from "./database/entities-model/seed/seed-product";
+import {ProductManager} from "./database/entities-model/features/product/manager/product-manager";
+import {Product, ProductCategory} from "./database/entities-model/features/product/schemas/product-schema";
 import {
     Carbohydrates,
     Fat,
     Minerals,
     NutritionalValue,
     Vitamins
-} from "./database/database-model/features/product/schemas/nutritional-value-schema";
-import {ProductPhoto} from "./database/database-model/features/product/schemas/product-photo-schema";
+} from "./database/entities-model/features/product/schemas/nutritional-value-schema";
+import {ProductPhoto} from "./database/entities-model/features/product/schemas/product-photo-schema";
 
 import {ApolloExpressServer} from "./server/server";
 import {ProductResolver} from "./server/graphql/resolvers/product/product-resolver";
 import {AuthenticationRoute} from "./server/authentication/routers/authentication/authentication";
-import {AgentManager} from "./database/database-model/features/agent/manager/agent-manager";
-import {Agent} from "./database/database-model/features/agent/schemas/agent-schema";
-import {seedAuthentication} from "./database/database-model/seed/seed-agent";
+import {AgentManager} from "./database/entities-model/features/agent/manager/agent-manager";
+import {Agent} from "./database/entities-model/features/agent/schemas/agent-schema";
+import {seedAuthentication} from "./database/entities-model/seed/seed-agent";
 
 let main = async () =>
 {
