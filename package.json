@@ -19,6 +19,8 @@
   "homepage": "https://github.com/georgephilippas-ber/apollo-graphql-typeorm#readme",
   "dependencies": {
     "@faker-js/faker": "^7.3.0",
+    "@mikro-orm/core": "^5.2.3",
+    "@mikro-orm/sqlite": "^5.2.3",
     "@types/bcrypt": "^5.0.0",
     "@types/jsonwebtoken": "^8.5.8",
     "apollo-server-core": "^3.9.0",

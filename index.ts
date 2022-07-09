@@ -1,21 +1,21 @@
 import {DatabaseProvider} from "./database/database-provider";
 
-import {ProductManager} from "./database/entities-model/features/product/manager/product-manager";
-import {Product, ProductCategory} from "./database/entities-model/features/product/schemas/product-schema";
+import {ProductManager} from "./database/entities-model/features/TypeORM/product/manager/product-manager";
+import {Product, ProductCategory} from "./database/entities-model/features/TypeORM/product/schemas/product-schema";
 import {
-    Carbohydrates,
     Fat,
     Minerals,
     NutritionalValue,
+    Carbohydrates,
     Vitamins
-} from "./database/entities-model/features/product/schemas/nutritional-value-schema";
-import {ProductPhoto} from "./database/entities-model/features/product/schemas/product-photo-schema";
+} from "./database/entities-model/features/TypeORM/product/schemas/nutritional-value-schema";
+import {ProductPhoto} from "./database/entities-model/features/TypeORM/product/schemas/product-photo-schema";
 
 import {ApolloExpressServer} from "./server/server";
 import {ProductResolver} from "./server/graphql/resolvers/product/product-resolver";
 import {AuthenticationRoute} from "./server/authentication/routers/authentication/authentication";
-import {AgentManager} from "./database/entities-model/features/agent/manager/agent-manager";
-import {Agent} from "./database/entities-model/features/agent/schemas/agent-schema";
+import {AgentManager} from "./database/entities-model/features/TypeORM/agent/manager/agent-manager";
+import {Agent} from "./database/entities-model/features/TypeORM/agent/schemas/agent-schema";
 import {seedAuthentication} from "./database/seed/seed-agent";
 import {seedProducts} from "./database/seed/seed-product";
 

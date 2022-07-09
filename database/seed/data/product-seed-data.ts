@@ -1,5 +1,5 @@
-import {Product} from "../../entities-model/features/product/schemas/product-schema";
-import {ProductPhoto} from "../../entities-model/features/product/schemas/product-photo-schema";
+import {Product} from "../../entities-model/features/TypeORM/product/schemas/product-schema";
+import {ProductPhoto} from "../../entities-model/features/TypeORM/product/schemas/product-photo-schema";
 
 export const categories_data_array_: string[] =
     [

@@ -1,5 +1,5 @@
 import {Resolver} from "../resolver";
-import {ProductManager} from "../../../../database/entities-model/features/product/manager/product-manager";
+import {ProductManager} from "../../../../database/entities-model/features/TypeORM/product/manager/product-manager";
 
 export class ProductResolver extends Resolver
 {
